@@ -1,0 +1,1000 @@
+"gender","race_ethnicity","parental_education","math","math_score","reading","reading_score","writing","writing_score"
+"male","A","some college","Math",50,"Reading",47,"Writing",54
+"male","A","high school","Math",53,"Reading",58,"Writing",44
+"male","A","some college","Math",69,"Reading",67,"Writing",69
+"male","A","some college","Math",81,"Reading",78,"Writing",81
+"female","A","some high school","Math",48,"Reading",66,"Writing",65
+"male","A","some high school","Math",46,"Reading",41,"Writing",43
+"female","A","some college","Math",78,"Reading",87,"Writing",91
+"male","A","associate's degree","Math",47,"Reading",57,"Writing",44
+"male","A","bachelor's degree","Math",80,"Reading",78,"Writing",81
+"female","A","associate's degree","Math",41,"Reading",51,"Writing",48
+"female","A","bachelor's degree","Math",59,"Reading",72,"Writing",70
+"male","A","some high school","Math",47,"Reading",49,"Writing",49
+"male","A","associate's degree","Math",67,"Reading",57,"Writing",53
+"male","A","associate's degree","Math",79,"Reading",82,"Writing",82
+"male","A","some high school","Math",66,"Reading",68,"Writing",64
+"male","A","bachelor's degree","Math",87,"Reading",84,"Writing",87
+"male","A","high school","Math",71,"Reading",74,"Writing",64
+"male","A","associate's degree","Math",40,"Reading",55,"Writing",53
+"male","A","bachelor's degree","Math",62,"Reading",72,"Writing",65
+"male","A","high school","Math",59,"Reading",52,"Writing",46
+"male","A","associate's degree","Math",62,"Reading",61,"Writing",55
+"male","A","some high school","Math",39,"Reading",39,"Writing",34
+"male","A","high school","Math",57,"Reading",51,"Writing",54
+"male","A","some high school","Math",61,"Reading",62,"Writing",61
+"male","A","bachelor's degree","Math",64,"Reading",60,"Writing",58
+"male","A","some high school","Math",68,"Reading",72,"Writing",64
+"male","A","bachelor's degree","Math",91,"Reading",96,"Writing",92
+"female","A","high school","Math",77,"Reading",88,"Writing",85
+"female","A","associate's degree","Math",82,"Reading",93,"Writing",93
+"female","A","master's degree","Math",50,"Reading",53,"Writing",58
+"male","A","some high school","Math",51,"Reading",31,"Writing",36
+"male","A","high school","Math",45,"Reading",47,"Writing",49
+"male","A","some college","Math",75,"Reading",81,"Writing",74
+"female","A","bachelor's degree","Math",45,"Reading",59,"Writing",64
+"male","A","high school","Math",57,"Reading",43,"Writing",47
+"female","A","high school","Math",53,"Reading",50,"Writing",60
+"female","A","some high school","Math",85,"Reading",90,"Writing",92
+"male","A","some high school","Math",71,"Reading",62,"Writing",50
+"female","A","some college","Math",61,"Reading",60,"Writing",57
+"male","A","high school","Math",63,"Reading",63,"Writing",62
+"female","A","some college","Math",72,"Reading",79,"Writing",82
+"male","A","some college","Math",58,"Reading",60,"Writing",57
+"male","A","some college","Math",78,"Reading",72,"Writing",70
+"female","A","some high school","Math",92,"Reading",100,"Writing",97
+"male","A","some high school","Math",55,"Reading",46,"Writing",43
+"male","A","some high school","Math",53,"Reading",54,"Writing",48
+"female","A","some high school","Math",44,"Reading",45,"Writing",45
+"female","A","associate's degree","Math",37,"Reading",57,"Writing",56
+"male","A","high school","Math",72,"Reading",67,"Writing",65
+"male","A","bachelor's degree","Math",75,"Reading",58,"Writing",62
+"male","A","associate's degree","Math",97,"Reading",92,"Writing",86
+"male","A","high school","Math",72,"Reading",73,"Writing",74
+"male","A","some high school","Math",79,"Reading",82,"Writing",73
+"female","A","high school","Math",68,"Reading",80,"Writing",76
+"female","A","some high school","Math",59,"Reading",73,"Writing",69
+"female","A","associate's degree","Math",65,"Reading",70,"Writing",74
+"female","A","high school","Math",55,"Reading",73,"Writing",73
+"female","A","some college","Math",54,"Reading",63,"Writing",67
+"male","A","associate's degree","Math",54,"Reading",53,"Writing",47
+"male","A","some college","Math",100,"Reading",96,"Writing",86
+"female","A","some high school","Math",47,"Reading",59,"Writing",50
+"male","A","some high school","Math",65,"Reading",59,"Writing",53
+"female","A","some high school","Math",59,"Reading",85,"Writing",80
+"female","A","some college","Math",49,"Reading",65,"Writing",55
+"male","A","some college","Math",53,"Reading",43,"Writing",43
+"male","A","high school","Math",48,"Reading",45,"Writing",41
+"male","A","some high school","Math",64,"Reading",50,"Writing",43
+"female","A","master's degree","Math",50,"Reading",67,"Writing",73
+"female","A","some high school","Math",38,"Reading",43,"Writing",43
+"male","A","bachelor's degree","Math",77,"Reading",67,"Writing",68
+"female","A","high school","Math",34,"Reading",48,"Writing",41
+"male","A","bachelor's degree","Math",66,"Reading",64,"Writing",62
+"female","A","some high school","Math",71,"Reading",83,"Writing",77
+"male","A","some high school","Math",62,"Reading",67,"Writing",69
+"male","A","master's degree","Math",73,"Reading",74,"Writing",72
+"female","A","some high school","Math",44,"Reading",64,"Writing",58
+"female","A","associate's degree","Math",55,"Reading",65,"Writing",62
+"male","A","high school","Math",68,"Reading",70,"Writing",66
+"male","A","bachelor's degree","Math",49,"Reading",58,"Writing",60
+"male","A","associate's degree","Math",63,"Reading",61,"Writing",61
+"female","A","some college","Math",69,"Reading",84,"Writing",82
+"female","A","some college","Math",58,"Reading",70,"Writing",67
+"female","A","some college","Math",56,"Reading",58,"Writing",64
+"male","A","some college","Math",61,"Reading",51,"Writing",52
+"female","A","bachelor's degree","Math",51,"Reading",49,"Writing",51
+"male","A","some college","Math",28,"Reading",23,"Writing",19
+"female","A","associate's degree","Math",65,"Reading",85,"Writing",76
+"female","A","high school","Math",61,"Reading",68,"Writing",63
+"female","A","high school","Math",75,"Reading",82,"Writing",79
+"female","B","bachelor's degree","Math",78,"Reading",79,"Writing",76
+"female","B","associate's degree","Math",59,"Reading",70,"Writing",66
+"female","B","associate's degree","Math",53,"Reading",58,"Writing",65
+"male","B","some college","Math",59,"Reading",65,"Writing",66
+"female","B","bachelor's degree","Math",75,"Reading",84,"Writing",80
+"female","B","associate's degree","Math",58,"Reading",63,"Writing",65
+"male","B","some college","Math",60,"Reading",60,"Writing",60
+"female","B","associate's degree","Math",61,"Reading",86,"Writing",87
+"male","B","bachelor's degree","Math",62,"Reading",63,"Writing",56
+"male","B","associate's degree","Math",82,"Reading",78,"Writing",74
+"male","B","associate's degree","Math",69,"Reading",70,"Writing",63
+"male","B","master's degree","Math",49,"Reading",53,"Writing",52
+"male","B","high school","Math",79,"Reading",60,"Writing",65
+"female","B","bachelor's degree","Math",66,"Reading",74,"Writing",81
+"female","B","high school","Math",67,"Reading",80,"Writing",81
+"male","B","some college","Math",74,"Reading",77,"Writing",76
+"female","B","master's degree","Math",58,"Reading",76,"Writing",78
+"female","B","high school","Math",68,"Reading",83,"Writing",78
+"female","B","some high school","Math",72,"Reading",81,"Writing",79
+"female","B","high school","Math",23,"Reading",44,"Writing",36
+"male","B","high school","Math",70,"Reading",65,"Writing",60
+"female","B","bachelor's degree","Math",65,"Reading",81,"Writing",81
+"female","B","high school","Math",50,"Reading",53,"Writing",55
+"female","B","some high school","Math",73,"Reading",79,"Writing",79
+"female","B","some college","Math",62,"Reading",67,"Writing",67
+"male","B","associate's degree","Math",65,"Reading",54,"Writing",57
+"female","B","high school","Math",46,"Reading",54,"Writing",58
+"female","B","bachelor's degree","Math",77,"Reading",85,"Writing",87
+"female","B","master's degree","Math",52,"Reading",70,"Writing",62
+"female","B","some college","Math",50,"Reading",64,"Writing",66
+"male","B","high school","Math",60,"Reading",68,"Writing",60
+"male","B","high school","Math",62,"Reading",55,"Writing",54
+"male","B","some college","Math",62,"Reading",66,"Writing",68
+"male","B","associate's degree","Math",58,"Reading",57,"Writing",53
+"male","B","some college","Math",58,"Reading",50,"Writing",45
+"female","B","high school","Math",77,"Reading",82,"Writing",89
+"female","B","some high school","Math",57,"Reading",67,"Writing",72
+"female","B","high school","Math",65,"Reading",81,"Writing",73
+"female","B","some high school","Math",59,"Reading",63,"Writing",64
+"male","B","some high school","Math",48,"Reading",52,"Writing",45
+"female","B","some high school","Math",62,"Reading",64,"Writing",66
+"female","B","some high school","Math",60,"Reading",70,"Writing",74
+"female","B","associate's degree","Math",76,"Reading",94,"Writing",87
+"female","B","some high school","Math",65,"Reading",82,"Writing",78
+"female","B","some high school","Math",74,"Reading",90,"Writing",88
+"male","B","some college","Math",47,"Reading",43,"Writing",41
+"male","B","some high school","Math",68,"Reading",54,"Writing",53
+"female","B","associate's degree","Math",68,"Reading",77,"Writing",80
+"female","B","some college","Math",53,"Reading",66,"Writing",73
+"male","B","some college","Math",55,"Reading",55,"Writing",47
+"female","B","some college","Math",45,"Reading",53,"Writing",55
+"male","B","some college","Math",87,"Reading",84,"Writing",86
+"female","B","high school","Math",71,"Reading",87,"Writing",82
+"male","B","some college","Math",69,"Reading",77,"Writing",77
+"female","B","associate's degree","Math",57,"Reading",69,"Writing",68
+"female","B","high school","Math",62,"Reading",62,"Writing",63
+"female","B","high school","Math",74,"Reading",72,"Writing",72
+"male","B","high school","Math",76,"Reading",62,"Writing",60
+"male","B","high school","Math",52,"Reading",48,"Writing",49
+"male","B","some high school","Math",49,"Reading",50,"Writing",52
+"female","B","some high school","Math",52,"Reading",67,"Writing",72
+"male","B","some college","Math",66,"Reading",65,"Writing",60
+"female","B","some high school","Math",49,"Reading",58,"Writing",55
+"female","B","high school","Math",66,"Reading",72,"Writing",70
+"female","B","some college","Math",74,"Reading",81,"Writing",76
+"female","B","master's degree","Math",77,"Reading",90,"Writing",84
+"female","B","high school","Math",76,"Reading",85,"Writing",82
+"female","B","some high school","Math",32,"Reading",51,"Writing",44
+"female","B","some college","Math",19,"Reading",38,"Writing",32
+"female","B","high school","Math",48,"Reading",62,"Writing",60
+"female","B","some college","Math",58,"Reading",61,"Writing",66
+"female","B","high school","Math",60,"Reading",72,"Writing",68
+"female","B","high school","Math",42,"Reading",52,"Writing",51
+"male","B","some high school","Math",94,"Reading",86,"Writing",87
+"female","B","some college","Math",82,"Reading",85,"Writing",87
+"male","B","bachelor's degree","Math",59,"Reading",54,"Writing",51
+"male","B","high school","Math",82,"Reading",82,"Writing",80
+"male","B","some high school","Math",84,"Reading",83,"Writing",75
+"male","B","high school","Math",66,"Reading",77,"Writing",70
+"male","B","some high school","Math",61,"Reading",56,"Writing",56
+"male","B","associate's degree","Math",87,"Reading",85,"Writing",73
+"female","B","associate's degree","Math",52,"Reading",66,"Writing",73
+"female","B","high school","Math",58,"Reading",68,"Writing",61
+"female","B","bachelor's degree","Math",67,"Reading",86,"Writing",83
+"male","B","some college","Math",54,"Reading",52,"Writing",51
+"female","B","high school","Math",58,"Reading",70,"Writing",68
+"female","B","high school","Math",65,"Reading",64,"Writing",62
+"male","B","some high school","Math",67,"Reading",64,"Writing",61
+"female","B","some high school","Math",60,"Reading",70,"Writing",70
+"female","B","some high school","Math",18,"Reading",32,"Writing",28
+"female","B","some college","Math",70,"Reading",75,"Writing",78
+"male","B","associate's degree","Math",61,"Reading",58,"Writing",56
+"male","B","some college","Math",88,"Reading",85,"Writing",76
+"male","B","bachelor's degree","Math",73,"Reading",56,"Writing",57
+"male","B","associate's degree","Math",44,"Reading",41,"Writing",38
+"female","B","some high school","Math",37,"Reading",46,"Writing",46
+"male","B","associate's degree","Math",81,"Reading",82,"Writing",82
+"female","B","associate's degree","Math",54,"Reading",65,"Writing",65
+"female","B","some high school","Math",67,"Reading",89,"Writing",82
+"male","B","bachelor's degree","Math",88,"Reading",75,"Writing",76
+"male","B","some college","Math",91,"Reading",96,"Writing",91
+"male","B","associate's degree","Math",67,"Reading",62,"Writing",60
+"female","B","associate's degree","Math",47,"Reading",49,"Writing",50
+"male","B","high school","Math",49,"Reading",45,"Writing",45
+"male","B","associate's degree","Math",80,"Reading",76,"Writing",64
+"female","B","associate's degree","Math",53,"Reading",71,"Writing",67
+"female","B","associate's degree","Math",73,"Reading",76,"Writing",80
+"male","B","bachelor's degree","Math",66,"Reading",60,"Writing",57
+"male","B","some high school","Math",79,"Reading",85,"Writing",86
+"female","B","some college","Math",65,"Reading",75,"Writing",70
+"male","B","bachelor's degree","Math",63,"Reading",71,"Writing",69
+"female","B","associate's degree","Math",46,"Reading",61,"Writing",55
+"female","B","some high school","Math",41,"Reading",55,"Writing",51
+"male","B","associate's degree","Math",90,"Reading",78,"Writing",81
+"female","B","some college","Math",61,"Reading",68,"Writing",66
+"female","B","some high school","Math",24,"Reading",38,"Writing",27
+"female","B","high school","Math",69,"Reading",76,"Writing",74
+"male","B","some college","Math",62,"Reading",61,"Writing",57
+"female","B","bachelor's degree","Math",52,"Reading",65,"Writing",69
+"female","B","bachelor's degree","Math",61,"Reading",72,"Writing",70
+"female","B","high school","Math",58,"Reading",62,"Writing",59
+"male","B","some high school","Math",85,"Reading",84,"Writing",78
+"female","B","some college","Math",79,"Reading",86,"Writing",92
+"male","B","some high school","Math",65,"Reading",66,"Writing",62
+"female","B","high school","Math",8,"Reading",24,"Writing",23
+"male","B","high school","Math",57,"Reading",48,"Writing",51
+"female","B","associate's degree","Math",71,"Reading",83,"Writing",78
+"female","B","associate's degree","Math",80,"Reading",86,"Writing",83
+"female","B","some high school","Math",63,"Reading",78,"Writing",79
+"male","B","some college","Math",79,"Reading",67,"Writing",67
+"male","B","some college","Math",69,"Reading",54,"Writing",55
+"male","B","high school","Math",36,"Reading",29,"Writing",27
+"female","B","high school","Math",50,"Reading",67,"Writing",63
+"male","B","some high school","Math",74,"Reading",63,"Writing",57
+"male","B","high school","Math",60,"Reading",44,"Writing",47
+"male","B","associate's degree","Math",65,"Reading",65,"Writing",63
+"female","B","associate's degree","Math",82,"Reading",80,"Writing",77
+"female","B","associate's degree","Math",52,"Reading",76,"Writing",70
+"male","B","some high school","Math",63,"Reading",67,"Writing",67
+"female","B","some high school","Math",70,"Reading",64,"Writing",72
+"female","B","high school","Math",64,"Reading",73,"Writing",71
+"female","B","some college","Math",88,"Reading",95,"Writing",92
+"male","B","some college","Math",41,"Reading",39,"Writing",34
+"male","B","some college","Math",40,"Reading",43,"Writing",39
+"female","B","associate's degree","Math",73,"Reading",83,"Writing",76
+"female","B","bachelor's degree","Math",75,"Reading",85,"Writing",82
+"male","B","high school","Math",47,"Reading",46,"Writing",42
+"male","B","associate's degree","Math",81,"Reading",73,"Writing",72
+"female","B","some college","Math",63,"Reading",65,"Writing",61
+"female","B","bachelor's degree","Math",72,"Reading",72,"Writing",74
+"male","B","high school","Math",72,"Reading",65,"Writing",68
+"male","B","some college","Math",54,"Reading",54,"Writing",45
+"female","B","associate's degree","Math",90,"Reading",90,"Writing",91
+"male","B","associate's degree","Math",91,"Reading",89,"Writing",92
+"male","B","associate's degree","Math",82,"Reading",84,"Writing",78
+"male","B","high school","Math",73,"Reading",71,"Writing",68
+"male","B","some college","Math",60,"Reading",62,"Writing",60
+"female","B","associate's degree","Math",49,"Reading",52,"Writing",54
+"female","B","high school","Math",87,"Reading",95,"Writing",86
+"male","B","some high school","Math",64,"Reading",53,"Writing",57
+"female","B","high school","Math",54,"Reading",64,"Writing",68
+"male","B","some high school","Math",72,"Reading",68,"Writing",67
+"female","B","some high school","Math",66,"Reading",69,"Writing",68
+"female","B","associate's degree","Math",94,"Reading",87,"Writing",92
+"male","B","high school","Math",59,"Reading",58,"Writing",47
+"female","B","some high school","Math",82,"Reading",82,"Writing",80
+"male","B","bachelor's degree","Math",55,"Reading",59,"Writing",54
+"female","B","high school","Math",38,"Reading",60,"Writing",50
+"female","B","some high school","Math",54,"Reading",61,"Writing",62
+"female","B","master's degree","Math",77,"Reading",97,"Writing",94
+"female","B","high school","Math",67,"Reading",78,"Writing",79
+"male","B","associate's degree","Math",61,"Reading",42,"Writing",41
+"male","B","some high school","Math",51,"Reading",54,"Writing",41
+"male","B","high school","Math",73,"Reading",69,"Writing",68
+"female","B","master's degree","Math",90,"Reading",95,"Writing",93
+"male","B","associate's degree","Math",57,"Reading",56,"Writing",57
+"male","B","bachelor's degree","Math",87,"Reading",90,"Writing",88
+"female","B","associate's degree","Math",40,"Reading",48,"Writing",50
+"female","B","associate's degree","Math",53,"Reading",70,"Writing",70
+"male","B","bachelor's degree","Math",48,"Reading",51,"Writing",46
+"male","B","associate's degree","Math",48,"Reading",43,"Writing",45
+"male","B","high school","Math",52,"Reading",49,"Writing",46
+"male","B","high school","Math",63,"Reading",48,"Writing",47
+"male","B","some high school","Math",88,"Reading",84,"Writing",75
+"male","B","some college","Math",71,"Reading",75,"Writing",70
+"female","B","high school","Math",81,"Reading",91,"Writing",89
+"female","B","some college","Math",48,"Reading",56,"Writing",58
+"male","B","some college","Math",75,"Reading",68,"Writing",65
+"female","B","bachelor's degree","Math",97,"Reading",97,"Writing",96
+"male","B","high school","Math",30,"Reading",24,"Writing",15
+"male","C","high school","Math",62,"Reading",55,"Writing",55
+"male","C","some high school","Math",49,"Reading",49,"Writing",41
+"female","C","high school","Math",29,"Reading",29,"Writing",30
+"female","C","some high school","Math",74,"Reading",75,"Writing",82
+"male","C","associate's degree","Math",65,"Reading",67,"Writing",65
+"male","C","some college","Math",63,"Reading",61,"Writing",54
+"male","C","bachelor's degree","Math",94,"Reading",90,"Writing",91
+"female","C","some high school","Math",44,"Reading",51,"Writing",55
+"female","C","some college","Math",53,"Reading",62,"Writing",56
+"male","C","some college","Math",63,"Reading",63,"Writing",60
+"female","C","high school","Math",35,"Reading",53,"Writing",46
+"male","C","associate's degree","Math",76,"Reading",70,"Writing",68
+"female","C","some high school","Math",49,"Reading",63,"Writing",56
+"male","C","some high school","Math",63,"Reading",60,"Writing",57
+"female","C","high school","Math",50,"Reading",66,"Writing",64
+"male","C","some high school","Math",45,"Reading",52,"Writing",49
+"male","C","master's degree","Math",79,"Reading",78,"Writing",77
+"female","C","bachelor's degree","Math",66,"Reading",74,"Writing",81
+"female","C","associate's degree","Math",57,"Reading",77,"Writing",80
+"male","C","high school","Math",40,"Reading",46,"Writing",50
+"female","C","bachelor's degree","Math",86,"Reading",92,"Writing",87
+"female","C","associate's degree","Math",49,"Reading",53,"Writing",53
+"female","C","bachelor's degree","Math",65,"Reading",79,"Writing",81
+"female","C","associate's degree","Math",67,"Reading",84,"Writing",81
+"male","C","master's degree","Math",91,"Reading",85,"Writing",85
+"female","C","associate's degree","Math",74,"Reading",75,"Writing",83
+"female","C","high school","Math",60,"Reading",64,"Writing",74
+"female","C","high school","Math",44,"Reading",61,"Writing",52
+"male","C","some high school","Math",51,"Reading",52,"Writing",44
+"male","C","some high school","Math",53,"Reading",37,"Writing",40
+"female","C","high school","Math",66,"Reading",71,"Writing",76
+"female","C","some college","Math",58,"Reading",59,"Writing",66
+"male","C","master's degree","Math",71,"Reading",67,"Writing",67
+"female","C","some high school","Math",76,"Reading",87,"Writing",85
+"female","C","associate's degree","Math",68,"Reading",67,"Writing",69
+"female","C","bachelor's degree","Math",59,"Reading",64,"Writing",75
+"male","C","high school","Math",71,"Reading",66,"Writing",65
+"female","C","some college","Math",64,"Reading",82,"Writing",77
+"male","C","associate's degree","Math",83,"Reading",72,"Writing",78
+"male","C","associate's degree","Math",49,"Reading",51,"Writing",51
+"female","C","some college","Math",73,"Reading",80,"Writing",82
+"female","C","high school","Math",67,"Reading",79,"Writing",84
+"female","C","some college","Math",75,"Reading",81,"Writing",84
+"female","C","some college","Math",71,"Reading",81,"Writing",80
+"female","C","some high school","Math",43,"Reading",53,"Writing",53
+"female","C","high school","Math",41,"Reading",46,"Writing",43
+"female","C","some college","Math",82,"Reading",90,"Writing",94
+"male","C","some college","Math",61,"Reading",61,"Writing",62
+"female","C","some high school","Math",29,"Reading",40,"Writing",44
+"male","C","associate's degree","Math",82,"Reading",75,"Writing",77
+"female","C","bachelor's degree","Math",56,"Reading",79,"Writing",72
+"male","C","high school","Math",71,"Reading",60,"Writing",61
+"male","C","associate's degree","Math",47,"Reading",37,"Writing",35
+"female","C","bachelor's degree","Math",47,"Reading",62,"Writing",66
+"male","C","associate's degree","Math",58,"Reading",54,"Writing",52
+"female","C","bachelor's degree","Math",83,"Reading",93,"Writing",95
+"female","C","associate's degree","Math",91,"Reading",86,"Writing",84
+"female","C","some college","Math",76,"Reading",83,"Writing",88
+"male","C","associate's degree","Math",49,"Reading",51,"Writing",43
+"male","C","bachelor's degree","Math",58,"Reading",55,"Writing",48
+"male","C","some college","Math",76,"Reading",78,"Writing",75
+"male","C","high school","Math",58,"Reading",61,"Writing",52
+"female","C","high school","Math",61,"Reading",73,"Writing",63
+"male","C","master's degree","Math",54,"Reading",59,"Writing",50
+"female","C","some college","Math",46,"Reading",64,"Writing",66
+"female","C","some high school","Math",69,"Reading",73,"Writing",73
+"female","C","high school","Math",72,"Reading",80,"Writing",75
+"male","C","high school","Math",53,"Reading",52,"Writing",49
+"female","C","bachelor's degree","Math",77,"Reading",94,"Writing",95
+"female","C","bachelor's degree","Math",65,"Reading",72,"Writing",74
+"female","C","bachelor's degree","Math",52,"Reading",61,"Writing",66
+"male","C","some high school","Math",62,"Reading",64,"Writing",55
+"male","C","master's degree","Math",62,"Reading",68,"Writing",75
+"female","C","some college","Math",63,"Reading",78,"Writing",80
+"female","C","associate's degree","Math",46,"Reading",58,"Writing",57
+"female","C","some college","Math",59,"Reading",71,"Writing",70
+"male","C","some high school","Math",56,"Reading",61,"Writing",60
+"female","C","some high school","Math",70,"Reading",82,"Writing",76
+"female","C","some college","Math",42,"Reading",66,"Writing",69
+"male","C","high school","Math",27,"Reading",34,"Writing",36
+"male","C","high school","Math",71,"Reading",79,"Writing",71
+"female","C","high school","Math",36,"Reading",53,"Writing",43
+"male","C","associate's degree","Math",73,"Reading",68,"Writing",66
+"female","C","some college","Math",52,"Reading",58,"Writing",58
+"male","C","associate's degree","Math",43,"Reading",45,"Writing",50
+"male","C","some college","Math",59,"Reading",60,"Writing",58
+"female","C","associate's degree","Math",66,"Reading",77,"Writing",73
+"male","C","high school","Math",69,"Reading",58,"Writing",53
+"male","C","bachelor's degree","Math",61,"Reading",66,"Writing",61
+"female","C","associate's degree","Math",65,"Reading",84,"Writing",84
+"female","C","associate's degree","Math",62,"Reading",74,"Writing",70
+"female","C","bachelor's degree","Math",67,"Reading",75,"Writing",72
+"female","C","some college","Math",45,"Reading",73,"Writing",70
+"male","C","associate's degree","Math",78,"Reading",81,"Writing",82
+"female","C","associate's degree","Math",68,"Reading",67,"Writing",73
+"female","C","some high school","Math",47,"Reading",54,"Writing",53
+"male","C","high school","Math",59,"Reading",53,"Writing",52
+"male","C","associate's degree","Math",97,"Reading",93,"Writing",91
+"female","C","some college","Math",69,"Reading",78,"Writing",76
+"female","C","high school","Math",66,"Reading",76,"Writing",68
+"female","C","associate's degree","Math",71,"Reading",77,"Writing",77
+"female","C","associate's degree","Math",58,"Reading",73,"Writing",68
+"male","C","associate's degree","Math",87,"Reading",100,"Writing",95
+"male","C","master's degree","Math",79,"Reading",81,"Writing",71
+"male","C","some college","Math",73,"Reading",74,"Writing",61
+"female","C","some college","Math",63,"Reading",73,"Writing",71
+"female","C","master's degree","Math",73,"Reading",78,"Writing",74
+"female","C","bachelor's degree","Math",66,"Reading",83,"Writing",83
+"female","C","associate's degree","Math",57,"Reading",78,"Writing",67
+"male","C","associate's degree","Math",51,"Reading",60,"Writing",58
+"male","C","high school","Math",58,"Reading",51,"Writing",52
+"female","C","some college","Math",71,"Reading",71,"Writing",80
+"female","C","bachelor's degree","Math",67,"Reading",69,"Writing",75
+"female","C","some high school","Math",50,"Reading",60,"Writing",60
+"male","C","associate's degree","Math",57,"Reading",54,"Writing",56
+"female","C","some high school","Math",65,"Reading",74,"Writing",77
+"female","C","high school","Math",65,"Reading",69,"Writing",67
+"female","C","high school","Math",35,"Reading",61,"Writing",54
+"female","C","associate's degree","Math",85,"Reading",89,"Writing",95
+"male","C","high school","Math",75,"Reading",69,"Writing",68
+"female","C","associate's degree","Math",59,"Reading",66,"Writing",67
+"female","C","some high school","Math",59,"Reading",54,"Writing",67
+"female","C","master's degree","Math",81,"Reading",91,"Writing",87
+"male","C","some high school","Math",73,"Reading",66,"Writing",63
+"male","C","some college","Math",98,"Reading",86,"Writing",90
+"female","C","high school","Math",54,"Reading",59,"Writing",62
+"female","C","some high school","Math",63,"Reading",73,"Writing",68
+"female","C","associate's degree","Math",81,"Reading",77,"Writing",79
+"female","C","bachelor's degree","Math",92,"Reading",100,"Writing",99
+"female","C","some college","Math",58,"Reading",67,"Writing",72
+"male","C","high school","Math",70,"Reading",70,"Writing",65
+"female","C","associate's degree","Math",91,"Reading",95,"Writing",94
+"male","C","high school","Math",54,"Reading",72,"Writing",59
+"male","C","some high school","Math",78,"Reading",72,"Writing",69
+"female","C","associate's degree","Math",53,"Reading",62,"Writing",53
+"female","C","bachelor's degree","Math",51,"Reading",72,"Writing",79
+"female","C","associate's degree","Math",62,"Reading",76,"Writing",80
+"male","C","bachelor's degree","Math",71,"Reading",74,"Writing",68
+"male","C","associate's degree","Math",74,"Reading",73,"Writing",67
+"male","C","associate's degree","Math",65,"Reading",73,"Writing",68
+"male","C","high school","Math",72,"Reading",67,"Writing",64
+"female","C","associate's degree","Math",82,"Reading",93,"Writing",93
+"female","C","high school","Math",62,"Reading",67,"Writing",64
+"male","C","high school","Math",62,"Reading",55,"Writing",49
+"male","C","some college","Math",74,"Reading",77,"Writing",73
+"male","C","master's degree","Math",79,"Reading",72,"Writing",69
+"female","C","some college","Math",62,"Reading",67,"Writing",62
+"male","C","bachelor's degree","Math",86,"Reading",83,"Writing",86
+"male","C","some high school","Math",69,"Reading",71,"Writing",65
+"female","C","bachelor's degree","Math",43,"Reading",51,"Writing",54
+"male","C","some high school","Math",68,"Reading",63,"Writing",54
+"male","C","associate's degree","Math",64,"Reading",66,"Writing",59
+"female","C","high school","Math",61,"Reading",72,"Writing",70
+"male","C","high school","Math",61,"Reading",56,"Writing",55
+"female","C","associate's degree","Math",63,"Reading",67,"Writing",70
+"male","C","some high school","Math",73,"Reading",66,"Writing",66
+"male","C","some college","Math",50,"Reading",48,"Writing",53
+"male","C","associate's degree","Math",77,"Reading",67,"Writing",64
+"male","C","some high school","Math",79,"Reading",76,"Writing",65
+"male","C","high school","Math",70,"Reading",56,"Writing",51
+"male","C","associate's degree","Math",62,"Reading",65,"Writing",58
+"female","C","some college","Math",67,"Reading",81,"Writing",79
+"male","C","high school","Math",84,"Reading",77,"Writing",74
+"female","C","some high school","Math",65,"Reading",76,"Writing",75
+"female","C","master's degree","Math",40,"Reading",58,"Writing",54
+"male","C","some high school","Math",51,"Reading",56,"Writing",53
+"female","C","some high school","Math",67,"Reading",74,"Writing",77
+"female","C","associate's degree","Math",85,"Reading",84,"Writing",82
+"male","C","high school","Math",86,"Reading",81,"Writing",80
+"female","C","some college","Math",59,"Reading",62,"Writing",64
+"male","C","associate's degree","Math",87,"Reading",73,"Writing",72
+"female","C","some college","Math",64,"Reading",85,"Writing",85
+"male","C","bachelor's degree","Math",63,"Reading",64,"Writing",66
+"female","C","associate's degree","Math",65,"Reading",77,"Writing",74
+"male","C","some college","Math",65,"Reading",58,"Writing",49
+"female","C","associate's degree","Math",53,"Reading",61,"Writing",62
+"male","C","master's degree","Math",67,"Reading",57,"Writing",59
+"male","C","associate's degree","Math",92,"Reading",79,"Writing",84
+"male","C","bachelor's degree","Math",37,"Reading",56,"Writing",47
+"male","C","some high school","Math",59,"Reading",69,"Writing",65
+"male","C","high school","Math",61,"Reading",60,"Writing",55
+"female","C","some college","Math",62,"Reading",69,"Writing",69
+"female","C","associate's degree","Math",56,"Reading",68,"Writing",70
+"female","C","high school","Math",81,"Reading",84,"Writing",82
+"female","C","associate's degree","Math",59,"Reading",73,"Writing",72
+"female","C","some college","Math",32,"Reading",39,"Writing",33
+"female","C","associate's degree","Math",55,"Reading",72,"Writing",79
+"female","C","some college","Math",87,"Reading",89,"Writing",94
+"male","C","some college","Math",69,"Reading",64,"Writing",68
+"female","C","bachelor's degree","Math",50,"Reading",60,"Writing",59
+"male","C","some high school","Math",57,"Reading",61,"Writing",54
+"female","C","associate's degree","Math",67,"Reading",84,"Writing",86
+"male","C","high school","Math",62,"Reading",67,"Writing",58
+"male","C","master's degree","Math",79,"Reading",77,"Writing",75
+"female","C","some high school","Math",77,"Reading",90,"Writing",85
+"male","C","associate's degree","Math",58,"Reading",55,"Writing",53
+"female","C","some high school","Math",48,"Reading",58,"Writing",52
+"male","C","some college","Math",53,"Reading",44,"Writing",42
+"male","C","master's degree","Math",61,"Reading",67,"Writing",66
+"male","C","associate's degree","Math",69,"Reading",77,"Writing",69
+"male","C","bachelor's degree","Math",53,"Reading",58,"Writing",55
+"female","C","high school","Math",53,"Reading",72,"Writing",64
+"female","C","associate's degree","Math",65,"Reading",76,"Writing",76
+"male","C","some college","Math",59,"Reading",41,"Writing",42
+"male","C","some college","Math",80,"Reading",64,"Writing",66
+"male","C","some college","Math",53,"Reading",39,"Writing",37
+"female","C","some college","Math",77,"Reading",90,"Writing",91
+"female","C","high school","Math",58,"Reading",75,"Writing",77
+"male","C","some high school","Math",64,"Reading",58,"Writing",51
+"male","C","high school","Math",58,"Reading",52,"Writing",54
+"female","C","master's degree","Math",69,"Reading",84,"Writing",85
+"female","C","some college","Math",84,"Reading",87,"Writing",91
+"female","C","some college","Math",55,"Reading",69,"Writing",65
+"female","C","some college","Math",67,"Reading",75,"Writing",70
+"female","C","bachelor's degree","Math",62,"Reading",78,"Writing",79
+"male","C","high school","Math",53,"Reading",51,"Writing",51
+"male","C","some college","Math",91,"Reading",74,"Writing",76
+"female","C","associate's degree","Math",83,"Reading",85,"Writing",90
+"female","C","some college","Math",35,"Reading",44,"Writing",43
+"female","C","some high school","Math",65,"Reading",69,"Writing",76
+"male","C","high school","Math",50,"Reading",48,"Writing",42
+"female","C","high school","Math",63,"Reading",69,"Writing",74
+"female","C","associate's degree","Math",68,"Reading",86,"Writing",84
+"female","C","bachelor's degree","Math",79,"Reading",92,"Writing",89
+"female","C","associate's degree","Math",52,"Reading",59,"Writing",62
+"male","C","bachelor's degree","Math",91,"Reading",81,"Writing",79
+"female","C","high school","Math",59,"Reading",72,"Writing",68
+"female","C","some high school","Math",77,"Reading",91,"Writing",88
+"female","C","high school","Math",60,"Reading",68,"Writing",72
+"male","C","associate's degree","Math",68,"Reading",65,"Writing",61
+"female","C","master's degree","Math",52,"Reading",65,"Writing",61
+"female","C","bachelor's degree","Math",43,"Reading",62,"Writing",61
+"female","C","some college","Math",88,"Reading",93,"Writing",93
+"female","C","some high school","Math",71,"Reading",84,"Writing",87
+"female","C","some college","Math",69,"Reading",90,"Writing",88
+"female","C","some college","Math",63,"Reading",74,"Writing",74
+"female","C","some college","Math",62,"Reading",72,"Writing",70
+"male","C","some college","Math",35,"Reading",28,"Writing",27
+"male","C","bachelor's degree","Math",96,"Reading",90,"Writing",92
+"female","C","high school","Math",72,"Reading",80,"Writing",83
+"female","C","associate's degree","Math",52,"Reading",55,"Writing",57
+"male","C","some high school","Math",67,"Reading",73,"Writing",68
+"male","C","some high school","Math",76,"Reading",80,"Writing",73
+"female","C","master's degree","Math",54,"Reading",64,"Writing",67
+"male","C","associate's degree","Math",55,"Reading",61,"Writing",54
+"female","C","some college","Math",73,"Reading",76,"Writing",78
+"female","C","bachelor's degree","Math",74,"Reading",86,"Writing",89
+"female","C","high school","Math",42,"Reading",62,"Writing",60
+"female","C","high school","Math",76,"Reading",76,"Writing",74
+"male","C","high school","Math",90,"Reading",75,"Writing",69
+"male","C","some college","Math",68,"Reading",68,"Writing",61
+"female","C","associate's degree","Math",96,"Reading",96,"Writing",99
+"male","C","associate's degree","Math",60,"Reading",51,"Writing",56
+"female","C","bachelor's degree","Math",96,"Reading",100,"Writing",100
+"male","C","some high school","Math",75,"Reading",72,"Writing",62
+"female","C","associate's degree","Math",54,"Reading",61,"Writing",58
+"female","C","high school","Math",34,"Reading",42,"Writing",39
+"male","C","high school","Math",70,"Reading",74,"Writing",71
+"female","C","bachelor's degree","Math",44,"Reading",63,"Writing",62
+"female","C","high school","Math",33,"Reading",41,"Writing",43
+"female","C","associate's degree","Math",60,"Reading",75,"Writing",74
+"female","C","some high school","Math",55,"Reading",65,"Writing",62
+"female","C","associate's degree","Math",40,"Reading",59,"Writing",51
+"female","C","some college","Math",54,"Reading",64,"Writing",65
+"female","C","high school","Math",75,"Reading",88,"Writing",85
+"female","C","some college","Math",72,"Reading",72,"Writing",71
+"male","C","associate's degree","Math",73,"Reading",78,"Writing",72
+"male","C","high school","Math",82,"Reading",84,"Writing",82
+"female","C","some college","Math",88,"Reading",95,"Writing",94
+"female","C","some high school","Math",69,"Reading",75,"Writing",78
+"male","C","associate's degree","Math",46,"Reading",43,"Writing",42
+"male","C","high school","Math",52,"Reading",53,"Writing",49
+"male","C","some college","Math",93,"Reading",84,"Writing",90
+"male","C","bachelor's degree","Math",83,"Reading",82,"Writing",84
+"female","C","some high school","Math",0,"Reading",17,"Writing",10
+"male","C","some college","Math",84,"Reading",87,"Writing",81
+"female","C","bachelor's degree","Math",77,"Reading",88,"Writing",87
+"female","C","associate's degree","Math",64,"Reading",64,"Writing",70
+"male","C","associate's degree","Math",84,"Reading",80,"Writing",80
+"male","C","some college","Math",66,"Reading",59,"Writing",52
+"male","C","high school","Math",81,"Reading",66,"Writing",64
+"female","C","associate's degree","Math",69,"Reading",80,"Writing",71
+"male","C","master's degree","Math",72,"Reading",66,"Writing",72
+"male","C","high school","Math",88,"Reading",89,"Writing",86
+"male","C","associate's degree","Math",85,"Reading",76,"Writing",71
+"male","C","high school","Math",66,"Reading",66,"Writing",59
+"female","C","some college","Math",83,"Reading",83,"Writing",90
+"female","C","bachelor's degree","Math",81,"Reading",88,"Writing",90
+"male","C","high school","Math",68,"Reading",60,"Writing",53
+"male","C","high school","Math",75,"Reading",81,"Writing",71
+"female","C","some college","Math",22,"Reading",39,"Writing",33
+"female","C","some college","Math",70,"Reading",89,"Writing",88
+"female","C","some college","Math",54,"Reading",48,"Writing",52
+"female","C","some college","Math",60,"Reading",72,"Writing",74
+"male","C","associate's degree","Math",98,"Reading",87,"Writing",90
+"female","C","associate's degree","Math",64,"Reading",73,"Writing",68
+"male","C","associate's degree","Math",78,"Reading",77,"Writing",77
+"female","C","high school","Math",59,"Reading",71,"Writing",65
+"female","C","master's degree","Math",65,"Reading",81,"Writing",81
+"female","C","some high school","Math",64,"Reading",79,"Writing",77
+"male","C","some college","Math",79,"Reading",79,"Writing",78
+"female","C","some high school","Math",44,"Reading",50,"Writing",51
+"male","C","bachelor's degree","Math",70,"Reading",75,"Writing",74
+"male","C","some college","Math",58,"Reading",57,"Writing",54
+"female","C","associate's degree","Math",39,"Reading",64,"Writing",57
+"female","C","bachelor's degree","Math",63,"Reading",75,"Writing",81
+"male","C","master's degree","Math",46,"Reading",42,"Writing",46
+"female","C","associate's degree","Math",54,"Reading",58,"Writing",61
+"male","C","some college","Math",67,"Reading",74,"Writing",70
+"male","C","bachelor's degree","Math",69,"Reading",63,"Writing",61
+"male","C","some college","Math",58,"Reading",49,"Writing",42
+"female","C","associate's degree","Math",75,"Reading",82,"Writing",90
+"male","C","some high school","Math",61,"Reading",57,"Writing",56
+"female","C","some college","Math",70,"Reading",72,"Writing",76
+"male","C","bachelor's degree","Math",83,"Reading",78,"Writing",73
+"female","C","some high school","Math",85,"Reading",92,"Writing",93
+"female","C","some high school","Math",48,"Reading",56,"Writing",51
+"female","C","some high school","Math",65,"Reading",86,"Writing",80
+"female","D","some college","Math",77,"Reading",86,"Writing",86
+"male","D","high school","Math",64,"Reading",64,"Writing",67
+"male","D","associate's degree","Math",40,"Reading",52,"Writing",43
+"male","D","high school","Math",66,"Reading",69,"Writing",63
+"male","D","some college","Math",44,"Reading",54,"Writing",53
+"male","D","bachelor's degree","Math",74,"Reading",71,"Writing",80
+"female","D","master's degree","Math",62,"Reading",70,"Writing",75
+"female","D","some college","Math",69,"Reading",74,"Writing",74
+"male","D","some college","Math",40,"Reading",42,"Writing",38
+"female","D","associate's degree","Math",74,"Reading",81,"Writing",83
+"female","D","some high school","Math",50,"Reading",64,"Writing",59
+"female","D","associate's degree","Math",75,"Reading",90,"Writing",88
+"female","D","associate's degree","Math",57,"Reading",74,"Writing",76
+"male","D","high school","Math",88,"Reading",78,"Writing",75
+"male","D","associate's degree","Math",52,"Reading",55,"Writing",49
+"male","D","some college","Math",58,"Reading",59,"Writing",58
+"female","D","some high school","Math",59,"Reading",58,"Writing",59
+"male","D","some high school","Math",45,"Reading",37,"Writing",37
+"female","D","some college","Math",58,"Reading",63,"Writing",73
+"male","D","some college","Math",63,"Reading",55,"Writing",63
+"female","D","some high school","Math",61,"Reading",74,"Writing",72
+"male","D","high school","Math",42,"Reading",39,"Writing",34
+"female","D","associate's degree","Math",71,"Reading",71,"Writing",74
+"female","D","some high school","Math",73,"Reading",86,"Writing",82
+"female","D","some college","Math",58,"Reading",67,"Writing",62
+"female","D","bachelor's degree","Math",65,"Reading",67,"Writing",62
+"male","D","bachelor's degree","Math",68,"Reading",74,"Writing",74
+"female","D","associate's degree","Math",85,"Reading",91,"Writing",89
+"female","D","master's degree","Math",87,"Reading",100,"Writing",100
+"female","D","associate's degree","Math",77,"Reading",89,"Writing",98
+"female","D","some college","Math",51,"Reading",58,"Writing",54
+"female","D","bachelor's degree","Math",78,"Reading",82,"Writing",79
+"female","D","some high school","Math",51,"Reading",63,"Writing",61
+"male","D","high school","Math",63,"Reading",57,"Writing",56
+"male","D","some college","Math",65,"Reading",77,"Writing",74
+"male","D","master's degree","Math",82,"Reading",82,"Writing",74
+"male","D","master's degree","Math",89,"Reading",84,"Writing",82
+"male","D","bachelor's degree","Math",74,"Reading",79,"Writing",75
+"male","D","some college","Math",71,"Reading",61,"Writing",69
+"female","D","some high school","Math",76,"Reading",72,"Writing",71
+"male","D","some college","Math",88,"Reading",73,"Writing",78
+"female","D","bachelor's degree","Math",68,"Reading",75,"Writing",81
+"male","D","bachelor's degree","Math",54,"Reading",49,"Writing",47
+"male","D","some high school","Math",62,"Reading",67,"Writing",61
+"male","D","associate's degree","Math",66,"Reading",62,"Writing",64
+"female","D","some college","Math",79,"Reading",86,"Writing",81
+"female","D","some high school","Math",97,"Reading",100,"Writing",100
+"female","D","associate's degree","Math",65,"Reading",69,"Writing",70
+"male","D","some high school","Math",62,"Reading",66,"Writing",68
+"male","D","some college","Math",76,"Reading",83,"Writing",79
+"male","D","some college","Math",77,"Reading",62,"Writing",62
+"male","D","associate's degree","Math",61,"Reading",55,"Writing",52
+"female","D","some college","Math",65,"Reading",81,"Writing",77
+"male","D","some high school","Math",74,"Reading",71,"Writing",78
+"male","D","some high school","Math",80,"Reading",79,"Writing",79
+"female","D","high school","Math",56,"Reading",68,"Writing",74
+"male","D","some high school","Math",86,"Reading",80,"Writing",75
+"male","D","high school","Math",57,"Reading",50,"Writing",54
+"male","D","some college","Math",76,"Reading",64,"Writing",66
+"male","D","associate's degree","Math",80,"Reading",75,"Writing",77
+"male","D","bachelor's degree","Math",63,"Reading",66,"Writing",67
+"female","D","some high school","Math",64,"Reading",60,"Writing",74
+"male","D","high school","Math",73,"Reading",68,"Writing",66
+"female","D","high school","Math",56,"Reading",52,"Writing",55
+"male","D","some high school","Math",75,"Reading",74,"Writing",69
+"female","D","some college","Math",71,"Reading",83,"Writing",83
+"male","D","master's degree","Math",80,"Reading",80,"Writing",72
+"male","D","high school","Math",54,"Reading",52,"Writing",52
+"male","D","high school","Math",76,"Reading",73,"Writing",68
+"male","D","some high school","Math",59,"Reading",42,"Writing",41
+"female","D","high school","Math",69,"Reading",72,"Writing",77
+"female","D","associate's degree","Math",88,"Reading",92,"Writing",95
+"female","D","associate's degree","Math",47,"Reading",53,"Writing",58
+"female","D","some college","Math",65,"Reading",70,"Writing",71
+"male","D","high school","Math",53,"Reading",52,"Writing",42
+"male","D","high school","Math",45,"Reading",48,"Writing",46
+"female","D","bachelor's degree","Math",73,"Reading",79,"Writing",84
+"female","D","some college","Math",70,"Reading",78,"Writing",78
+"male","D","some high school","Math",86,"Reading",73,"Writing",70
+"male","D","high school","Math",78,"Reading",77,"Writing",80
+"male","D","associate's degree","Math",90,"Reading",87,"Writing",75
+"male","D","some high school","Math",56,"Reading",54,"Writing",52
+"female","D","high school","Math",49,"Reading",57,"Writing",52
+"male","D","bachelor's degree","Math",67,"Reading",61,"Writing",68
+"female","D","master's degree","Math",77,"Reading",82,"Writing",91
+"female","D","associate's degree","Math",56,"Reading",65,"Writing",63
+"male","D","some high school","Math",76,"Reading",70,"Writing",69
+"female","D","some high school","Math",35,"Reading",55,"Writing",60
+"male","D","associate's degree","Math",67,"Reading",72,"Writing",67
+"male","D","some college","Math",79,"Reading",73,"Writing",67
+"male","D","high school","Math",75,"Reading",74,"Writing",66
+"male","D","some college","Math",59,"Reading",62,"Writing",61
+"female","D","some college","Math",80,"Reading",90,"Writing",89
+"female","D","some high school","Math",27,"Reading",34,"Writing",32
+"female","D","some high school","Math",73,"Reading",84,"Writing",85
+"male","D","some high school","Math",74,"Reading",74,"Writing",72
+"female","D","some college","Math",82,"Reading",97,"Writing",96
+"female","D","bachelor's degree","Math",59,"Reading",70,"Writing",73
+"female","D","some high school","Math",80,"Reading",90,"Writing",82
+"female","D","master's degree","Math",85,"Reading",95,"Writing",100
+"female","D","high school","Math",62,"Reading",64,"Writing",64
+"male","D","master's degree","Math",73,"Reading",70,"Writing",75
+"female","D","some college","Math",77,"Reading",68,"Writing",77
+"male","D","some high school","Math",60,"Reading",59,"Writing",54
+"female","D","high school","Math",88,"Reading",99,"Writing",100
+"female","D","high school","Math",52,"Reading",57,"Writing",56
+"male","D","associate's degree","Math",87,"Reading",84,"Writing",85
+"female","D","master's degree","Math",70,"Reading",71,"Writing",74
+"male","D","associate's degree","Math",71,"Reading",66,"Writing",60
+"male","D","some college","Math",68,"Reading",59,"Writing",62
+"female","D","high school","Math",57,"Reading",58,"Writing",64
+"female","D","master's degree","Math",47,"Reading",58,"Writing",67
+"male","D","associate's degree","Math",75,"Reading",68,"Writing",64
+"male","D","associate's degree","Math",75,"Reading",66,"Writing",73
+"male","D","some high school","Math",89,"Reading",88,"Writing",82
+"female","D","high school","Math",78,"Reading",81,"Writing",80
+"male","D","some college","Math",69,"Reading",66,"Writing",60
+"female","D","bachelor's degree","Math",79,"Reading",89,"Writing",89
+"male","D","associate's degree","Math",53,"Reading",54,"Writing",48
+"female","D","associate's degree","Math",26,"Reading",31,"Writing",38
+"female","D","some high school","Math",59,"Reading",67,"Writing",61
+"female","D","bachelor's degree","Math",71,"Reading",76,"Writing",83
+"male","D","associate's degree","Math",80,"Reading",68,"Writing",72
+"female","D","master's degree","Math",55,"Reading",64,"Writing",70
+"female","D","associate's degree","Math",52,"Reading",59,"Writing",56
+"male","D","some college","Math",61,"Reading",47,"Writing",56
+"male","D","high school","Math",68,"Reading",64,"Writing",66
+"female","D","some college","Math",59,"Reading",78,"Writing",76
+"female","D","master's degree","Math",74,"Reading",79,"Writing",82
+"female","D","master's degree","Math",40,"Reading",59,"Writing",54
+"male","D","some college","Math",76,"Reading",71,"Writing",73
+"male","D","some high school","Math",62,"Reading",49,"Writing",52
+"female","D","some college","Math",74,"Reading",89,"Writing",84
+"female","D","some high school","Math",66,"Reading",78,"Writing",78
+"male","D","some college","Math",71,"Reading",49,"Writing",52
+"male","D","bachelor's degree","Math",69,"Reading",58,"Writing",57
+"female","D","bachelor's degree","Math",29,"Reading",41,"Writing",47
+"female","D","high school","Math",51,"Reading",66,"Writing",62
+"male","D","associate's degree","Math",79,"Reading",82,"Writing",80
+"female","D","associate's degree","Math",82,"Reading",95,"Writing",89
+"female","D","master's degree","Math",64,"Reading",63,"Writing",66
+"male","D","some college","Math",77,"Reading",62,"Writing",64
+"male","D","some high school","Math",73,"Reading",66,"Writing",62
+"female","D","some college","Math",74,"Reading",75,"Writing",79
+"female","D","some college","Math",63,"Reading",80,"Writing",80
+"female","D","master's degree","Math",61,"Reading",71,"Writing",78
+"male","D","bachelor's degree","Math",68,"Reading",68,"Writing",67
+"female","D","master's degree","Math",53,"Reading",61,"Writing",68
+"female","D","some high school","Math",81,"Reading",97,"Writing",96
+"female","D","bachelor's degree","Math",63,"Reading",73,"Writing",78
+"female","D","associate's degree","Math",73,"Reading",75,"Writing",80
+"female","D","some college","Math",69,"Reading",77,"Writing",77
+"female","D","high school","Math",69,"Reading",77,"Writing",73
+"female","D","some high school","Math",65,"Reading",82,"Writing",81
+"female","D","master's degree","Math",54,"Reading",60,"Writing",63
+"male","D","high school","Math",60,"Reading",57,"Writing",51
+"male","D","master's degree","Math",84,"Reading",89,"Writing",90
+"male","D","some college","Math",69,"Reading",60,"Writing",63
+"male","D","bachelor's degree","Math",88,"Reading",78,"Writing",83
+"male","D","master's degree","Math",95,"Reading",81,"Writing",84
+"male","D","some college","Math",100,"Reading",97,"Writing",99
+"male","D","associate's degree","Math",61,"Reading",48,"Writing",46
+"male","D","some college","Math",49,"Reading",57,"Writing",46
+"male","D","some college","Math",67,"Reading",64,"Writing",70
+"male","D","some high school","Math",84,"Reading",84,"Writing",80
+"female","D","some high school","Math",80,"Reading",92,"Writing",88
+"female","D","associate's degree","Math",76,"Reading",74,"Writing",73
+"male","D","high school","Math",41,"Reading",52,"Writing",51
+"female","D","associate's degree","Math",74,"Reading",88,"Writing",90
+"female","D","associate's degree","Math",59,"Reading",70,"Writing",65
+"female","D","some college","Math",69,"Reading",79,"Writing",81
+"female","D","some college","Math",85,"Reading",86,"Writing",98
+"male","D","some high school","Math",69,"Reading",66,"Writing",61
+"female","D","associate's degree","Math",43,"Reading",60,"Writing",58
+"male","D","associate's degree","Math",90,"Reading",87,"Writing",85
+"female","D","some college","Math",55,"Reading",71,"Writing",69
+"male","D","associate's degree","Math",80,"Reading",63,"Writing",63
+"male","D","associate's degree","Math",81,"Reading",72,"Writing",77
+"male","D","associate's degree","Math",52,"Reading",57,"Writing",50
+"female","D","high school","Math",69,"Reading",77,"Writing",78
+"male","D","associate's degree","Math",81,"Reading",75,"Writing",78
+"male","D","some college","Math",63,"Reading",61,"Writing",60
+"female","D","high school","Math",67,"Reading",72,"Writing",74
+"male","D","associate's degree","Math",77,"Reading",78,"Writing",73
+"female","D","associate's degree","Math",77,"Reading",77,"Writing",73
+"female","D","some college","Math",79,"Reading",89,"Writing",86
+"female","D","associate's degree","Math",57,"Reading",78,"Writing",79
+"female","D","some college","Math",63,"Reading",64,"Writing",67
+"male","D","high school","Math",46,"Reading",34,"Writing",36
+"male","D","high school","Math",89,"Reading",87,"Writing",79
+"female","D","associate's degree","Math",42,"Reading",61,"Writing",58
+"female","D","some college","Math",98,"Reading",100,"Writing",99
+"male","D","master's degree","Math",81,"Reading",81,"Writing",84
+"male","D","some high school","Math",55,"Reading",59,"Writing",59
+"female","D","high school","Math",73,"Reading",92,"Writing",84
+"male","D","some high school","Math",55,"Reading",47,"Writing",44
+"male","D","associate's degree","Math",81,"Reading",71,"Writing",73
+"male","D","bachelor's degree","Math",80,"Reading",73,"Writing",72
+"male","D","associate's degree","Math",72,"Reading",79,"Writing",74
+"male","D","high school","Math",69,"Reading",75,"Writing",71
+"male","D","some high school","Math",71,"Reading",69,"Writing",68
+"male","D","some college","Math",55,"Reading",58,"Writing",52
+"female","D","some college","Math",52,"Reading",59,"Writing",65
+"female","D","some high school","Math",48,"Reading",58,"Writing",54
+"male","D","some high school","Math",78,"Reading",81,"Writing",86
+"male","D","some college","Math",60,"Reading",63,"Writing",59
+"female","D","some high school","Math",68,"Reading",71,"Writing",75
+"male","D","bachelor's degree","Math",75,"Reading",73,"Writing",74
+"female","D","associate's degree","Math",46,"Reading",56,"Writing",57
+"female","D","some college","Math",60,"Reading",66,"Writing",70
+"male","D","high school","Math",66,"Reading",74,"Writing",69
+"male","D","high school","Math",70,"Reading",70,"Writing",70
+"female","D","some college","Math",64,"Reading",74,"Writing",75
+"male","D","bachelor's degree","Math",61,"Reading",70,"Writing",76
+"female","D","bachelor's degree","Math",78,"Reading",90,"Writing",93
+"female","D","some high school","Math",69,"Reading",86,"Writing",81
+"female","D","high school","Math",39,"Reading",52,"Writing",46
+"female","D","some high school","Math",40,"Reading",65,"Writing",64
+"male","D","high school","Math",64,"Reading",54,"Writing",50
+"male","D","associate's degree","Math",80,"Reading",75,"Writing",69
+"male","D","bachelor's degree","Math",39,"Reading",42,"Writing",38
+"male","D","some college","Math",82,"Reading",82,"Writing",88
+"male","D","some college","Math",81,"Reading",82,"Writing",84
+"female","D","some high school","Math",59,"Reading",72,"Writing",80
+"female","D","associate's degree","Math",64,"Reading",76,"Writing",74
+"male","D","bachelor's degree","Math",55,"Reading",46,"Writing",44
+"female","D","some college","Math",69,"Reading",65,"Writing",74
+"male","D","high school","Math",44,"Reading",51,"Writing",48
+"male","D","some high school","Math",88,"Reading",74,"Writing",75
+"male","D","associate's degree","Math",67,"Reading",54,"Writing",63
+"female","D","some high school","Math",65,"Reading",78,"Writing",82
+"male","D","master's degree","Math",85,"Reading",84,"Writing",89
+"female","D","bachelor's degree","Math",93,"Reading",100,"Writing",100
+"female","D","some high school","Math",67,"Reading",84,"Writing",84
+"male","D","some college","Math",88,"Reading",77,"Writing",77
+"female","D","some college","Math",79,"Reading",84,"Writing",91
+"male","D","bachelor's degree","Math",50,"Reading",42,"Writing",48
+"male","D","high school","Math",69,"Reading",70,"Writing",67
+"male","D","high school","Math",72,"Reading",66,"Writing",66
+"male","D","high school","Math",74,"Reading",70,"Writing",69
+"female","D","high school","Math",65,"Reading",61,"Writing",71
+"male","D","some college","Math",62,"Reading",57,"Writing",62
+"male","D","associate's degree","Math",61,"Reading",71,"Writing",73
+"male","D","some college","Math",70,"Reading",63,"Writing",58
+"male","D","some college","Math",85,"Reading",81,"Writing",85
+"male","D","some high school","Math",77,"Reading",68,"Writing",69
+"female","D","master's degree","Math",78,"Reading",91,"Writing",96
+"female","D","some college","Math",49,"Reading",58,"Writing",60
+"female","D","some college","Math",75,"Reading",77,"Writing",83
+"female","D","master's degree","Math",92,"Reading",100,"Writing",100
+"female","D","high school","Math",45,"Reading",63,"Writing",59
+"female","D","some high school","Math",48,"Reading",54,"Writing",53
+"male","D","some college","Math",72,"Reading",57,"Writing",58
+"female","D","some college","Math",62,"Reading",70,"Writing",72
+"female","D","bachelor's degree","Math",89,"Reading",100,"Writing",100
+"female","D","some college","Math",49,"Reading",65,"Writing",61
+"male","D","high school","Math",55,"Reading",41,"Writing",48
+"male","D","some high school","Math",81,"Reading",78,"Writing",78
+"female","D","some college","Math",67,"Reading",86,"Writing",83
+"female","D","associate's degree","Math",55,"Reading",76,"Writing",76
+"female","D","bachelor's degree","Math",62,"Reading",72,"Writing",74
+"female","D","some college","Math",68,"Reading",78,"Writing",77
+"male","E","some high school","Math",78,"Reading",83,"Writing",80
+"female","E","master's degree","Math",81,"Reading",86,"Writing",87
+"male","E","associate's degree","Math",77,"Reading",69,"Writing",68
+"male","E","bachelor's degree","Math",85,"Reading",66,"Writing",71
+"female","E","associate's degree","Math",79,"Reading",88,"Writing",94
+"male","E","high school","Math",80,"Reading",76,"Writing",65
+"male","E","associate's degree","Math",62,"Reading",61,"Writing",58
+"male","E","some college","Math",68,"Reading",60,"Writing",59
+"male","E","associate's degree","Math",78,"Reading",74,"Writing",72
+"female","E","some college","Math",66,"Reading",74,"Writing",73
+"female","E","associate's degree","Math",95,"Reading",89,"Writing",92
+"male","E","some college","Math",76,"Reading",71,"Writing",72
+"male","E","associate's degree","Math",76,"Reading",71,"Writing",67
+"male","E","associate's degree","Math",90,"Reading",90,"Writing",82
+"male","E","bachelor's degree","Math",76,"Reading",62,"Writing",66
+"female","E","some college","Math",71,"Reading",70,"Writing",76
+"female","E","high school","Math",50,"Reading",50,"Writing",47
+"female","E","bachelor's degree","Math",100,"Reading",100,"Writing",100
+"male","E","associate's degree","Math",81,"Reading",81,"Writing",79
+"female","E","associate's degree","Math",100,"Reading",100,"Writing",100
+"female","E","some college","Math",100,"Reading",92,"Writing",97
+"female","E","bachelor's degree","Math",71,"Reading",70,"Writing",70
+"male","E","high school","Math",57,"Reading",56,"Writing",54
+"male","E","some high school","Math",94,"Reading",88,"Writing",78
+"female","E","associate's degree","Math",51,"Reading",51,"Writing",54
+"male","E","high school","Math",84,"Reading",73,"Writing",69
+"female","E","associate's degree","Math",93,"Reading",100,"Writing",95
+"male","E","some college","Math",84,"Reading",83,"Writing",78
+"male","E","high school","Math",86,"Reading",81,"Writing",75
+"male","E","some college","Math",53,"Reading",55,"Writing",48
+"female","E","some college","Math",86,"Reading",85,"Writing",91
+"female","E","associate's degree","Math",85,"Reading",92,"Writing",85
+"male","E","some college","Math",76,"Reading",67,"Writing",67
+"female","E","master's degree","Math",81,"Reading",92,"Writing",91
+"female","E","associate's degree","Math",59,"Reading",62,"Writing",69
+"female","E","some high school","Math",32,"Reading",34,"Writing",38
+"male","E","some high school","Math",73,"Reading",67,"Writing",59
+"female","E","bachelor's degree","Math",64,"Reading",73,"Writing",70
+"female","E","some college","Math",75,"Reading",88,"Writing",85
+"female","E","associate's degree","Math",68,"Reading",76,"Writing",67
+"female","E","high school","Math",66,"Reading",74,"Writing",78
+"female","E","some college","Math",67,"Reading",76,"Writing",75
+"female","E","some high school","Math",38,"Reading",49,"Writing",45
+"male","E","some college","Math",97,"Reading",87,"Writing",82
+"male","E","associate's degree","Math",100,"Reading",100,"Writing",93
+"female","E","some college","Math",42,"Reading",55,"Writing",54
+"male","E","associate's degree","Math",46,"Reading",43,"Writing",41
+"female","E","master's degree","Math",56,"Reading",72,"Writing",65
+"male","E","some college","Math",84,"Reading",77,"Writing",71
+"male","E","bachelor's degree","Math",70,"Reading",64,"Writing",70
+"male","E","high school","Math",70,"Reading",55,"Writing",56
+"male","E","some college","Math",66,"Reading",57,"Writing",52
+"male","E","associate's degree","Math",87,"Reading",74,"Writing",76
+"male","E","associate's degree","Math",62,"Reading",56,"Writing",53
+"female","E","high school","Math",75,"Reading",86,"Writing",79
+"female","E","some college","Math",68,"Reading",70,"Writing",66
+"male","E","bachelor's degree","Math",100,"Reading",100,"Writing",100
+"male","E","some college","Math",99,"Reading",87,"Writing",81
+"male","E","associate's degree","Math",71,"Reading",74,"Writing",68
+"female","E","bachelor's degree","Math",65,"Reading",73,"Writing",75
+"male","E","some college","Math",87,"Reading",74,"Writing",70
+"male","E","some high school","Math",77,"Reading",76,"Writing",77
+"male","E","some college","Math",83,"Reading",80,"Writing",73
+"male","E","associate's degree","Math",97,"Reading",82,"Writing",88
+"female","E","bachelor's degree","Math",99,"Reading",100,"Writing",100
+"male","E","some high school","Math",74,"Reading",64,"Writing",60
+"male","E","associate's degree","Math",64,"Reading",56,"Writing",52
+"female","E","associate's degree","Math",50,"Reading",56,"Writing",54
+"male","E","associate's degree","Math",46,"Reading",43,"Writing",44
+"female","E","high school","Math",59,"Reading",63,"Writing",75
+"female","E","some college","Math",71,"Reading",76,"Writing",70
+"male","E","associate's degree","Math",66,"Reading",63,"Writing",64
+"female","E","some college","Math",63,"Reading",72,"Writing",70
+"female","E","high school","Math",99,"Reading",93,"Writing",90
+"female","E","some college","Math",62,"Reading",73,"Writing",70
+"female","E","master's degree","Math",88,"Reading",99,"Writing",95
+"male","E","associate's degree","Math",89,"Reading",76,"Writing",74
+"female","E","high school","Math",57,"Reading",58,"Writing",57
+"male","E","associate's degree","Math",72,"Reading",64,"Writing",63
+"female","E","master's degree","Math",62,"Reading",68,"Writing",68
+"male","E","some college","Math",59,"Reading",51,"Writing",43
+"male","E","some high school","Math",30,"Reading",26,"Writing",22
+"female","E","bachelor's degree","Math",80,"Reading",83,"Writing",83
+"male","E","some high school","Math",92,"Reading",87,"Writing",78
+"female","E","master's degree","Math",45,"Reading",56,"Writing",54
+"female","E","associate's degree","Math",83,"Reading",86,"Writing",88
+"male","E","high school","Math",87,"Reading",91,"Writing",81
+"male","E","bachelor's degree","Math",79,"Reading",74,"Writing",72
+"male","E","high school","Math",81,"Reading",80,"Writing",76
+"female","E","high school","Math",57,"Reading",75,"Writing",73
+"male","E","high school","Math",94,"Reading",73,"Writing",71
+"female","E","high school","Math",41,"Reading",45,"Writing",40
+"female","E","associate's degree","Math",87,"Reading",94,"Writing",95
+"male","E","some high school","Math",87,"Reading",84,"Writing",76
+"male","E","some college","Math",69,"Reading",60,"Writing",54
+"female","E","associate's degree","Math",70,"Reading",84,"Writing",81
+"female","E","associate's degree","Math",57,"Reading",68,"Writing",73
+"female","E","associate's degree","Math",82,"Reading",85,"Writing",86
+"male","E","some high school","Math",89,"Reading",84,"Writing",77
+"female","E","some high school","Math",72,"Reading",79,"Writing",77
+"male","E","associate's degree","Math",94,"Reading",85,"Writing",82
+"female","E","some high school","Math",74,"Reading",74,"Writing",72
+"male","E","some college","Math",49,"Reading",52,"Writing",51
+"male","E","bachelor's degree","Math",70,"Reading",68,"Writing",72
+"female","E","associate's degree","Math",84,"Reading",95,"Writing",92
+"male","E","some college","Math",68,"Reading",72,"Writing",65
+"female","E","some college","Math",53,"Reading",58,"Writing",57
+"male","E","some high school","Math",68,"Reading",51,"Writing",57
+"male","E","bachelor's degree","Math",82,"Reading",62,"Writing",62
+"female","E","associate's degree","Math",65,"Reading",75,"Writing",77
+"male","E","some college","Math",81,"Reading",74,"Writing",71
+"male","E","associate's degree","Math",91,"Reading",73,"Writing",80
+"female","E","some high school","Math",80,"Reading",85,"Writing",85
+"female","E","bachelor's degree","Math",79,"Reading",81,"Writing",82
+"female","E","associate's degree","Math",73,"Reading",76,"Writing",78
+"male","E","some college","Math",93,"Reading",90,"Writing",83
+"male","E","high school","Math",73,"Reading",64,"Writing",57
+"male","E","some college","Math",85,"Reading",75,"Writing",68
+"female","E","master's degree","Math",94,"Reading",99,"Writing",100
+"female","E","some college","Math",73,"Reading",78,"Writing",76
+"male","E","high school","Math",55,"Reading",56,"Writing",51
+"female","E","high school","Math",64,"Reading",62,"Writing",68
+"female","E","high school","Math",74,"Reading",79,"Writing",80
+"male","E","some college","Math",86,"Reading",76,"Writing",74
+"male","E","associate's degree","Math",72,"Reading",57,"Writing",62
+"male","E","master's degree","Math",90,"Reading",85,"Writing",84
+"female","E","bachelor's degree","Math",61,"Reading",58,"Writing",62
+"female","E","associate's degree","Math",66,"Reading",65,"Writing",69
+"female","E","bachelor's degree","Math",37,"Reading",45,"Writing",38
+"male","E","some high school","Math",81,"Reading",75,"Writing",76
+"female","E","some college","Math",61,"Reading",64,"Writing",62
+"female","E","some college","Math",76,"Reading",78,"Writing",80
+"female","E","some college","Math",87,"Reading",85,"Writing",93
+"male","E","some high school","Math",82,"Reading",67,"Writing",61
+"female","E","high school","Math",74,"Reading",76,"Writing",73
+"male","E","bachelor's degree","Math",68,"Reading",68,"Writing",64
+"female","E","some high school","Math",77,"Reading",79,"Writing",80
+"female","E","high school","Math",74,"Reading",81,"Writing",71
+"female","E","bachelor's degree","Math",92,"Reading",100,"Writing",100
+"male","E","associate's degree","Math",53,"Reading",45,"Writing",40

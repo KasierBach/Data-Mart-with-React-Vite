@@ -14,10 +14,10 @@ import {
     Trash2,
     Plus,
     Filter,
-    TrendingUp,
     Users,
-    DollarSign,
-    Activity,
+    BookOpen, // For Reading
+    PenTool, // For Writing
+    Calculator, // For Math
     Pencil,
     RotateCcw
 } from "lucide-react"
@@ -40,48 +40,93 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
 import { Toaster } from "@/components/ui/sonner"
 import { toast } from "sonner"
+import { DataRecord } from "./types"
+import { AddRecordDialog } from "./components/AddRecordDialog"
+import { EditRecordDialog } from "./components/EditRecordDialog"
+import { useDebounce } from "@/hooks/use-debounce"
 
 // Types
-interface DataRecord {
-    id: number
-    name: string
-    department: string
-    revenue: number
-    status: "active" | "inactive" | "pending"
-    lastUpdate: string
-}
-
-type SortField = "id" | "name" | "department" | "revenue" | "status" | "lastUpdate"
+type SortField = "id" | "gender" | "race_ethnicity" | "parental_education" | "math_score" | "reading_score" | "writing_score" | "status" | "lastUpdate"
 type SortDirection = "asc" | "desc" | null
 
-// Mock data để sẵn khi chưa có dữ liệu
+// Mock data based on CSV (fallback only)
 const initialMockData: DataRecord[] = [
-    { id: 1, name: "Nguyễn Văn A", department: "Sales", revenue: 150000000, status: "active", lastUpdate: "2024-01-15" },
-    { id: 2, name: "Trần Thị B", department: "Marketing", revenue: 89000000, status: "active", lastUpdate: "2024-01-14" },
-    { id: 3, name: "Lê Văn C", department: "IT", revenue: 120000000, status: "inactive", lastUpdate: "2024-01-13" },
-    { id: 4, name: "Phạm Thị D", department: "Sales", revenue: 200000000, status: "active", lastUpdate: "2024-01-15" },
-    { id: 5, name: "Hoàng Văn E", department: "HR", revenue: 45000000, status: "pending", lastUpdate: "2024-01-12" },
-    { id: 6, name: "Vũ Thị F", department: "Finance", revenue: 175000000, status: "active", lastUpdate: "2024-01-15" },
-    { id: 7, name: "Đặng Văn G", department: "Operations", revenue: 95000000, status: "active", lastUpdate: "2024-01-14" },
-    { id: 8, name: "Bùi Thị H", department: "Sales", revenue: 180000000, status: "active", lastUpdate: "2024-01-15" },
+    { id: 1, gender: "male", race_ethnicity: "A", parental_education: "some college", math_label: "Math", math_score: 50, reading_label: "Reading", reading_score: 47, writing_label: "Writing", writing_score: 54, status: "active", lastUpdate: "2024-01-15" },
 ]
 
-const STORAGE_KEY = "datamart_records"
+// CSV parsing function
+function parseCSV(csvText: string): DataRecord[] {
+    const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '')
+    const records: DataRecord[] = []
+
+    // Skip header line (index 0)
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i]
+        // Parse CSV with quoted values
+        const values: string[] = []
+        let current = ''
+        let inQuote = false
+        for (let j = 0; j < line.length; j++) {
+            const char = line[j]
+            if (char === '"') {
+                inQuote = !inQuote
+            } else if (char === ',' && !inQuote) {
+                values.push(current)
+                current = ''
+            } else {
+                current += char
+            }
+        }
+        values.push(current)
+
+        if (values.length >= 9) {
+            records.push({
+                id: i,
+                gender: values[0],
+                race_ethnicity: values[1],
+                parental_education: values[2],
+                math_label: values[3],
+                math_score: parseInt(values[4]) || 0,
+                reading_label: values[5],
+                reading_score: parseInt(values[6]) || 0,
+                writing_label: values[7],
+                writing_score: parseInt(values[8]) || 0,
+                status: "active",
+                lastUpdate: "2024-01-15"
+            })
+        }
+    }
+    return records
+}
+
+// Fetch CSV data from public folder
+async function fetchCSVData(): Promise<DataRecord[]> {
+    try {
+        console.log('Attempting to fetch CSV data...')
+        const response = await fetch('/data.csv')
+        console.log('Response status:', response.status)
+        if (!response.ok) {
+            throw new Error(`Failed to fetch CSV: ${response.status} ${response.statusText}`)
+        }
+        const csvText = await response.text()
+        console.log('CSV text length:', csvText.length)
+        const parsedData = parseCSV(csvText)
+        console.log('Parsed data length:', parsedData.length)
+        return parsedData
+    } catch (error) {
+        console.error('Error loading CSV:', error)
+        return []
+    }
+}
+
+const STORAGE_KEY = "student_performance_records"
+
 
 export default function App() {
     const [searchTerm, setSearchTerm] = useState("")
+    const debouncedSearchTerm = useDebounce(searchTerm, 300)
     const [data, setData] = useState<DataRecord[]>(initialMockData)
     const [isLoaded, setIsLoaded] = useState(false)
     const [isRefreshing, setIsRefreshing] = useState(false)
@@ -91,25 +136,45 @@ export default function App() {
     const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [editingRecord, setEditingRecord] = useState<DataRecord | null>(null)
-    const [newRecord, setNewRecord] = useState({
-        id: "",
-        name: "",
-        department: "",
-        revenue: "",
-        status: "active" as "active" | "inactive" | "pending"
-    })
 
-    // Load dữ liệu từ localStorage khi render lần đầu
+    // Load dữ liệu từ localStorage khi render lần đầu, nếu không có thì tải từ CSV
     useEffect(() => {
-        const saved = localStorage.getItem(STORAGE_KEY)
-        if (saved) {
-            try {
-                setData(JSON.parse(saved))
-            } catch {
-                // Keep initialMockData if parse fails
+        const loadData = async () => {
+            const saved = localStorage.getItem(STORAGE_KEY)
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved)
+                    // Simple check if it looks like our new data (has math_score)
+                    if (parsed.length > 0 && typeof parsed[0].math_score === 'number') {
+                        console.log('Loaded data from localStorage:', parsed.length, 'records')
+                        setData(parsed)
+                        setIsLoaded(true)
+                        return
+                    }
+                } catch {
+                    // fall through
+                }
             }
+            // No valid saved data, load CSV
+            console.log('Loading data from CSV...')
+            const csvData = await fetchCSVData()
+            if (csvData.length > 0) {
+                console.log('Successfully loaded CSV data:', csvData.length, 'records')
+                setData(csvData)
+                toast.success("Đã tải dữ liệu từ CSV!", {
+                    description: `${csvData.length} records đã được tải.`
+                })
+            } else {
+                console.log('CSV loading failed, using mock data')
+                setData(initialMockData)
+                toast.error("Không thể tải dữ liệu CSV!", {
+                    description: "Đang sử dụng dữ liệu mẫu."
+                })
+            }
+            setIsLoaded(true)
         }
-        setIsLoaded(true)
+
+        loadData()
     }, [])
 
     // Lưu dữ liệu vào localStorage khi thay đổi
@@ -122,19 +187,23 @@ export default function App() {
     // Tạo hiệu ứng refresh
     const handleRefresh = async () => {
         setIsRefreshing(true)
-
-        // Tạo hiệu ứng loading
         await new Promise(resolve => setTimeout(resolve, 1000))
-
-        // Tải lại dữ liệu từ localStorage
         const saved = localStorage.getItem(STORAGE_KEY)
         if (saved) {
             try {
                 const parsedData = JSON.parse(saved)
-                setData(parsedData)
-                toast.success("Dữ liệu đã được làm mới!", {
-                    description: `${parsedData.length} records đã được tải lại từ bộ nhớ.`
-                })
+                // Validate schema again
+                if (parsedData.length > 0 && typeof parsedData[0].math_score === 'number') {
+                    setData(parsedData)
+                    toast.success("Dữ liệu đã được làm mới!", {
+                        description: `${parsedData.length} records đã được tải lại từ bộ nhớ.`
+                    })
+                } else {
+                    setData(initialMockData)
+                    toast.success("Dữ liệu không tương thích, đã reset về mặc định!", {
+                        description: `Loaded default mock data.`
+                    })
+                }
             } catch {
                 setData(initialMockData)
                 toast.success("Dữ liệu đã được reset!", {
@@ -142,29 +211,43 @@ export default function App() {
                 })
             }
         }
-
         setIsRefreshing(false)
     }
 
-    // Reset dữ liệu về mock data ban đầu
-    const handleReset = () => {
-        setData(initialMockData)
-        toast.success("Đã reset dữ liệu!", {
-            description: `Đã khôi phục ${initialMockData.length} records mặc định.`
-        })
+    // Reset dữ liệu về dữ liệu CSV gốc
+    const handleReset = async () => {
+        console.log('Resetting data from CSV...')
+        const csvData = await fetchCSVData()
+        if (csvData.length > 0) {
+            setData(csvData)
+            toast.success("Đã reset dữ liệu từ CSV!", {
+                description: `Đã khôi phục ${csvData.length} records từ file CSV.`
+            })
+        } else {
+            setData(initialMockData)
+            toast.error("Không thể tải dữ liệu CSV!", {
+                description: `Đã khôi phục ${initialMockData.length} records mặc định.`
+            })
+        }
     }
 
     // Xuất dữ liệu ra file CSV
     const handleExport = () => {
-        const headers = ["ID", "Name", "Department", "Revenue", "Status", "Last Update"]
+        const headers = ["ID", "Gender", "Race/Ethnicity", "Parental Education", "Math Label", "Math Score", "Reading Label", "Reading Score", "Writing Label", "Writing Score", "Status", "Last Update"]
         const csvContent = [
             headers.join(","),
             ...filteredAndSortedData.map(item =>
                 [
                     item.id,
-                    `"${item.name}"`,
-                    item.department,
-                    item.revenue,
+                    item.gender,
+                    `"${item.race_ethnicity}"`,
+                    `"${item.parental_education}"`,
+                    item.math_label,
+                    item.math_score,
+                    item.reading_label,
+                    item.reading_score,
+                    item.writing_label,
+                    item.writing_score,
                     item.status,
                     item.lastUpdate
                 ].join(",")
@@ -175,11 +258,12 @@ export default function App() {
         const link = document.createElement("a")
         const url = URL.createObjectURL(blob)
         link.setAttribute("href", url)
-        link.setAttribute("download", `datamart_export_${new Date().toISOString().split('T')[0]}.csv`)
+        link.setAttribute("download", `student_performance_export_${new Date().toISOString().split('T')[0]}.csv`)
         link.style.visibility = "hidden"
         document.body.appendChild(link)
         link.click()
         document.body.removeChild(link)
+        link.style.visibility = "hidden"
 
         toast.success("Xuất dữ liệu thành công!", {
             description: `Đã xuất ${filteredAndSortedData.length} records ra file CSV.`
@@ -195,76 +279,28 @@ export default function App() {
     }
 
     // Thêm bản ghi mới
-    const handleAddRecord = () => {
-        if (!newRecord.name || !newRecord.department || !newRecord.revenue) {
-            toast.error("Vui lòng điền đầy đủ thông tin!")
-            return
-        }
-
-        const defaultId = data.length > 0 ? Math.max(...data.map(d => d.id)) + 1 : 1
-        const parsedId = newRecord.id ? parseInt(newRecord.id) : NaN
-        const newId = !isNaN(parsedId) && parsedId > 0 ? parsedId : defaultId
-
-        // Kiểm tra ID đã tồn tại
-        if (data.some(d => d.id === newId)) {
-            toast.error("ID đã tồn tại!", {
-                description: `Record với ID #${newId} đã có trong danh sách.`
-            })
-            return
-        }
-
-        const record: DataRecord = {
-            id: newId,
-            name: newRecord.name,
-            department: newRecord.department,
-            revenue: parseFloat(newRecord.revenue),
-            status: newRecord.status,
-            lastUpdate: new Date().toISOString().split('T')[0]
-        }
-
+    const handleAddRecord = (record: DataRecord) => {
         setData(prev => [...prev, record])
-        setNewRecord({ id: "", name: "", department: "", revenue: "", status: "active" })
-        setIsAddDialogOpen(false)
-        toast.success("Đã thêm record mới!", {
-            description: `${record.name} (ID: ${record.id}) đã được thêm vào danh sách.`
-        })
     }
 
     // Mở form chỉnh sửa
     const handleOpenEdit = (record: DataRecord) => {
-        setEditingRecord({ ...record, originalId: record.id } as DataRecord & { originalId: number })
+        setEditingRecord(record)
         setIsEditDialogOpen(true)
     }
 
     // Lưu bản ghi đã chỉnh sửa
-    const handleSaveEdit = () => {
+    const handleSaveEdit = (updatedRecord: DataRecord) => {
+        // Use editingRecord original ID to find the item
         if (!editingRecord) return
 
-        if (!editingRecord.id || !editingRecord.name || !editingRecord.department || !editingRecord.revenue) {
-            toast.error("Vui lòng điền đầy đủ thông tin!")
-            return
-        }
-
-        const originalId = (editingRecord as DataRecord & { originalId?: number }).originalId ?? editingRecord.id
-
-        // Kiểm tra ID đã tồn tại (chỉ khi ID thay đổi)
-        if (editingRecord.id !== originalId && data.some(d => d.id === editingRecord.id)) {
-            toast.error("ID đã tồn tại!", {
-                description: `Record với ID #${editingRecord.id} đã có trong danh sách.`
-            })
-            return
-        }
-
         setData(prev => prev.map(item =>
-            item.id === originalId
-                ? { ...editingRecord, lastUpdate: new Date().toISOString().split('T')[0] }
+            item.id === editingRecord.id // Use the id of the record being edited
+                ? updatedRecord
                 : item
         ))
-        setIsEditDialogOpen(false)
+
         setEditingRecord(null)
-        toast.success("Đã cập nhật record!", {
-            description: `${editingRecord.name} (ID: ${editingRecord.id}) đã được cập nhật.`
-        })
     }
 
     // Xử lý sắp xếp
@@ -284,7 +320,6 @@ export default function App() {
         }
     }
 
-    // Lấy icon sắp xếp
     const getSortIcon = (field: SortField) => {
         if (sortField !== field) {
             return <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -300,10 +335,21 @@ export default function App() {
 
     // Lọc và sắp xếp dữ liệu
     const filteredAndSortedData = useMemo(() => {
+        const lowerTerm = debouncedSearchTerm.toLowerCase()
         let result = data.filter(
             (item) =>
-                (item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    item.department.toLowerCase().includes(searchTerm.toLowerCase())) &&
+                (item.id.toString().includes(lowerTerm) ||
+                    item.gender.toLowerCase().includes(lowerTerm) ||
+                    item.race_ethnicity.toLowerCase().includes(lowerTerm) ||
+                    item.parental_education.toLowerCase().includes(lowerTerm) ||
+                    item.math_label.toLowerCase().includes(lowerTerm) ||
+                    item.math_score.toString().includes(lowerTerm) ||
+                    item.reading_label.toLowerCase().includes(lowerTerm) ||
+                    item.reading_score.toString().includes(lowerTerm) ||
+                    item.writing_label.toLowerCase().includes(lowerTerm) ||
+                    item.writing_score.toString().includes(lowerTerm) ||
+                    item.status.toLowerCase().includes(lowerTerm) ||
+                    item.lastUpdate.toLowerCase().includes(lowerTerm)) &&
                 (statusFilter === "all" || item.status === statusFilter)
         )
 
@@ -324,11 +370,7 @@ export default function App() {
         }
 
         return result
-    }, [data, searchTerm, statusFilter, sortField, sortDirection])
-
-    const formatCurrency = (value: number) => {
-        return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(value)
-    }
+    }, [data, debouncedSearchTerm, statusFilter, sortField, sortDirection])
 
     const getStatusBadge = (status: string) => {
         switch (status) {
@@ -350,12 +392,20 @@ export default function App() {
     }
 
     // Tính toán thống kê
-    const stats = useMemo(() => ({
-        total: data.length,
-        active: data.filter(d => d.status === "active").length,
-        totalRevenue: data.reduce((acc, curr) => acc + curr.revenue, 0),
-        avgRevenue: data.length > 0 ? data.reduce((acc, curr) => acc + curr.revenue, 0) / data.length : 0,
-    }), [data])
+    const stats = useMemo(() => {
+        const total = data.length
+        if (total === 0) return { total: 0, active: 0, avgMath: 0, avgReading: 0, avgWriting: 0 }
+
+        return {
+            total,
+            active: data.filter(d => d.status === "active").length,
+            avgMath: data.reduce((acc, curr) => acc + curr.math_score, 0) / total,
+            avgReading: data.reduce((acc, curr) => acc + curr.reading_score, 0) / total,
+            avgWriting: data.reduce((acc, curr) => acc + curr.writing_score, 0) / total,
+        }
+    }, [data])
+
+    const existingIds = useMemo(() => data.map(d => d.id), [data])
 
     return (
         <div className="min-h-screen bg-background p-4 md:p-8">
@@ -364,8 +414,8 @@ export default function App() {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="space-y-2">
-                        <h1 className="text-3xl font-bold tracking-tight text-balance">Datamart Dashboard</h1>
-                        <p className="text-muted-foreground">Quản lý và visualize dữ liệu datamart của bạn</p>
+                        <h1 className="text-3xl font-bold tracking-tight text-balance">Student Performance Dashboard</h1>
+                        <p className="text-muted-foreground">Theo dõi và phân tích kết quả học tập</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <ThemeToggle />
@@ -376,7 +426,7 @@ export default function App() {
                 <div className="grid gap-4 md:grid-cols-4">
                     <Card className="overflow-hidden">
                         <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
-                            <CardDescription>Total Records</CardDescription>
+                            <CardDescription>Total Students</CardDescription>
                             <Users className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
@@ -388,43 +438,43 @@ export default function App() {
                     </Card>
                     <Card className="overflow-hidden">
                         <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
-                            <CardDescription>Active</CardDescription>
-                            <Activity className="h-4 w-4 text-emerald-400" />
+                            <CardDescription>Avg Math Score</CardDescription>
+                            <Calculator className="h-4 w-4 text-blue-400" />
                         </CardHeader>
                         <CardContent>
-                            <CardTitle className="text-3xl text-emerald-400">
-                                {stats.active}
+                            <CardTitle className="text-2xl text-blue-400">
+                                {stats.avgMath.toFixed(1)}
                             </CardTitle>
                             <p className="text-xs text-muted-foreground mt-1">
-                                {((stats.active / stats.total) * 100).toFixed(0)}% tổng số
+                                Điểm toán trung bình
                             </p>
                         </CardContent>
                     </Card>
                     <Card className="overflow-hidden">
                         <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
-                            <CardDescription>Total Revenue</CardDescription>
-                            <DollarSign className="h-4 w-4 text-muted-foreground" />
+                            <CardDescription>Avg Reading Score</CardDescription>
+                            <BookOpen className="h-4 w-4 text-purple-400" />
                         </CardHeader>
                         <CardContent>
-                            <CardTitle className="text-2xl">
-                                {formatCurrency(stats.totalRevenue)}
+                            <CardTitle className="text-2xl text-purple-400">
+                                {stats.avgReading.toFixed(1)}
                             </CardTitle>
                             <p className="text-xs text-muted-foreground mt-1">
-                                Tổng doanh thu
+                                Điểm đọc trung bình
                             </p>
                         </CardContent>
                     </Card>
                     <Card className="overflow-hidden">
                         <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
-                            <CardDescription>Avg Revenue</CardDescription>
-                            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                            <CardDescription>Avg Writing Score</CardDescription>
+                            <PenTool className="h-4 w-4 text-orange-400" />
                         </CardHeader>
                         <CardContent>
-                            <CardTitle className="text-xl">
-                                {formatCurrency(stats.avgRevenue)}
+                            <CardTitle className="text-2xl text-orange-400">
+                                {stats.avgWriting.toFixed(1)}
                             </CardTitle>
                             <p className="text-xs text-muted-foreground mt-1">
-                                Trung bình / record
+                                Điểm viết trung bình
                             </p>
                         </CardContent>
                     </Card>
@@ -435,92 +485,22 @@ export default function App() {
                     <CardHeader>
                         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                             <div>
-                                <CardTitle>Data Table</CardTitle>
-                                <CardDescription>View và quản lý dữ liệu datamart</CardDescription>
+                                <CardTitle>Performance Table</CardTitle>
+                                <CardDescription>Chi tiết điểm số học sinh</CardDescription>
                             </div>
                             <div className="flex flex-wrap gap-2">
-                                <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-                                    <DialogTrigger asChild>
-                                        <Button variant="default" size="sm">
-                                            <Plus className="h-4 w-4 mr-2" />
-                                            Thêm mới
-                                        </Button>
-                                    </DialogTrigger>
-                                    <DialogContent>
-                                        <DialogHeader>
-                                            <DialogTitle>Thêm Record Mới</DialogTitle>
-                                            <DialogDescription>
-                                                Điền thông tin để thêm record mới vào danh sách.
-                                            </DialogDescription>
-                                        </DialogHeader>
-                                        <div className="grid gap-4 py-4">
-                                            <div className="grid gap-2">
-                                                <Label htmlFor="id">ID</Label>
-                                                <Input
-                                                    id="id"
-                                                    type="number"
-                                                    value={newRecord.id}
-                                                    onChange={(e) => setNewRecord(prev => ({ ...prev, id: e.target.value }))}
-                                                    placeholder={`Để trống sẽ tự động tạo (mặc định: ${data.length > 0 ? Math.max(...data.map(d => d.id)) + 1 : 1})`}
-                                                />
-                                            </div>
-                                            <div className="grid gap-2">
-                                                <Label htmlFor="name">Tên</Label>
-                                                <Input
-                                                    id="name"
-                                                    value={newRecord.name}
-                                                    onChange={(e) => setNewRecord(prev => ({ ...prev, name: e.target.value }))}
-                                                    placeholder="Nhập tên..."
-                                                />
-                                            </div>
-                                            <div className="grid gap-2">
-                                                <Label htmlFor="department">Phòng ban</Label>
-                                                <Input
-                                                    id="department"
-                                                    value={newRecord.department}
-                                                    onChange={(e) => setNewRecord(prev => ({ ...prev, department: e.target.value }))}
-                                                    placeholder="Nhập phòng ban..."
-                                                />
-                                            </div>
-                                            <div className="grid gap-2">
-                                                <Label htmlFor="revenue">Doanh thu (VND)</Label>
-                                                <Input
-                                                    id="revenue"
-                                                    type="number"
-                                                    value={newRecord.revenue}
-                                                    onChange={(e) => setNewRecord(prev => ({ ...prev, revenue: e.target.value }))}
-                                                    placeholder="Nhập doanh thu..."
-                                                />
-                                            </div>
-                                            <div className="grid gap-2">
-                                                <Label htmlFor="status">Trạng thái</Label>
-                                                <Select
-                                                    value={newRecord.status}
-                                                    onValueChange={(value: "active" | "inactive" | "pending") =>
-                                                        setNewRecord(prev => ({ ...prev, status: value }))
-                                                    }
-                                                >
-                                                    <SelectTrigger>
-                                                        <SelectValue />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        <SelectItem value="active">Active</SelectItem>
-                                                        <SelectItem value="inactive">Inactive</SelectItem>
-                                                        <SelectItem value="pending">Pending</SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                            </div>
-                                        </div>
-                                        <DialogFooter>
-                                            <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
-                                                Hủy
-                                            </Button>
-                                            <Button onClick={handleAddRecord}>
-                                                Thêm
-                                            </Button>
-                                        </DialogFooter>
-                                    </DialogContent>
-                                </Dialog>
+                                <Button variant="default" size="sm" onClick={() => setIsAddDialogOpen(true)}>
+                                    <Plus className="h-4 w-4 mr-2" />
+                                    Thêm mới
+                                </Button>
+
+                                <AddRecordDialog
+                                    isOpen={isAddDialogOpen}
+                                    onOpenChange={setIsAddDialogOpen}
+                                    onAdd={handleAddRecord}
+                                    existingIds={existingIds}
+                                />
+
                                 <Button
                                     variant="outline"
                                     size="sm"
@@ -536,7 +516,7 @@ export default function App() {
                                 </Button>
                                 <Button variant="outline" size="sm" onClick={handleReset} className="text-orange-500 hover:text-orange-600 hover:bg-orange-500/10">
                                     <RotateCcw className="h-4 w-4 mr-2" />
-                                    Reset
+                                    Reset CSV
                                 </Button>
                             </div>
                         </div>
@@ -547,7 +527,7 @@ export default function App() {
                             <div className="relative flex-1">
                                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                                 <Input
-                                    placeholder="Tìm kiếm theo tên hoặc phòng ban..."
+                                    placeholder="Tìm kiếm theo giới tính, sắc tộc, học vấn..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="pl-10"
@@ -574,59 +554,29 @@ export default function App() {
                             <Table>
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead
-                                            className="w-16 cursor-pointer hover:bg-muted/50"
-                                            onClick={() => handleSort("id")}
-                                        >
-                                            <div className="flex items-center">
-                                                ID
-                                                {getSortIcon("id")}
-                                            </div>
+                                        <TableHead className="w-16 cursor-pointer hover:bg-muted/50" onClick={() => handleSort("id")}>
+                                            <div className="flex items-center">ID {getSortIcon("id")}</div>
                                         </TableHead>
-                                        <TableHead
-                                            className="cursor-pointer hover:bg-muted/50"
-                                            onClick={() => handleSort("name")}
-                                        >
-                                            <div className="flex items-center">
-                                                Name
-                                                {getSortIcon("name")}
-                                            </div>
+                                        <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("gender")}>
+                                            <div className="flex items-center">Gender {getSortIcon("gender")}</div>
                                         </TableHead>
-                                        <TableHead
-                                            className="cursor-pointer hover:bg-muted/50"
-                                            onClick={() => handleSort("department")}
-                                        >
-                                            <div className="flex items-center">
-                                                Department
-                                                {getSortIcon("department")}
-                                            </div>
+                                        <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("race_ethnicity")}>
+                                            <div className="flex items-center">Race/Ethnicity {getSortIcon("race_ethnicity")}</div>
                                         </TableHead>
-                                        <TableHead
-                                            className="text-right cursor-pointer hover:bg-muted/50"
-                                            onClick={() => handleSort("revenue")}
-                                        >
-                                            <div className="flex items-center justify-end">
-                                                Revenue
-                                                {getSortIcon("revenue")}
-                                            </div>
+                                        <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("parental_education")}>
+                                            <div className="flex items-center">Parental Edu {getSortIcon("parental_education")}</div>
                                         </TableHead>
-                                        <TableHead
-                                            className="cursor-pointer hover:bg-muted/50"
-                                            onClick={() => handleSort("status")}
-                                        >
-                                            <div className="flex items-center">
-                                                Status
-                                                {getSortIcon("status")}
-                                            </div>
+                                        <TableHead className="text-right cursor-pointer hover:bg-muted/50" onClick={() => handleSort("math_score")}>
+                                            <div className="flex items-center justify-end">Math {getSortIcon("math_score")}</div>
                                         </TableHead>
-                                        <TableHead
-                                            className="cursor-pointer hover:bg-muted/50"
-                                            onClick={() => handleSort("lastUpdate")}
-                                        >
-                                            <div className="flex items-center">
-                                                Last Update
-                                                {getSortIcon("lastUpdate")}
-                                            </div>
+                                        <TableHead className="text-right cursor-pointer hover:bg-muted/50" onClick={() => handleSort("reading_score")}>
+                                            <div className="flex items-center justify-end">Reading {getSortIcon("reading_score")}</div>
+                                        </TableHead>
+                                        <TableHead className="text-right cursor-pointer hover:bg-muted/50" onClick={() => handleSort("writing_score")}>
+                                            <div className="flex items-center justify-end">Writing {getSortIcon("writing_score")}</div>
+                                        </TableHead>
+                                        <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("status")}>
+                                            <div className="flex items-center">Status {getSortIcon("status")}</div>
                                         </TableHead>
                                         <TableHead className="w-24">Actions</TableHead>
                                     </TableRow>
@@ -634,7 +584,7 @@ export default function App() {
                                 <TableBody>
                                     {filteredAndSortedData.length === 0 ? (
                                         <TableRow>
-                                            <TableCell colSpan={7} className="h-24 text-center">
+                                            <TableCell colSpan={9} className="h-24 text-center">
                                                 Không tìm thấy kết quả.
                                             </TableCell>
                                         </TableRow>
@@ -642,11 +592,13 @@ export default function App() {
                                         filteredAndSortedData.map((item) => (
                                             <TableRow key={item.id} className="group">
                                                 <TableCell className="font-mono text-muted-foreground">{item.id}</TableCell>
-                                                <TableCell className="font-medium">{item.name}</TableCell>
-                                                <TableCell>{item.department}</TableCell>
-                                                <TableCell className="text-right font-mono">{formatCurrency(item.revenue)}</TableCell>
+                                                <TableCell>{item.gender}</TableCell>
+                                                <TableCell>{item.race_ethnicity}</TableCell>
+                                                <TableCell>{item.parental_education}</TableCell>
+                                                <TableCell className="text-right font-medium">{item.math_score}</TableCell>
+                                                <TableCell className="text-right font-medium">{item.reading_score}</TableCell>
+                                                <TableCell className="text-right font-medium">{item.writing_score}</TableCell>
                                                 <TableCell>{getStatusBadge(item.status)}</TableCell>
-                                                <TableCell className="text-muted-foreground">{item.lastUpdate}</TableCell>
                                                 <TableCell>
                                                     <div className="flex items-center gap-1">
                                                         <Button
@@ -671,7 +623,7 @@ export default function App() {
                                                                 <AlertDialogHeader>
                                                                     <AlertDialogTitle>Xác nhận xóa?</AlertDialogTitle>
                                                                     <AlertDialogDescription>
-                                                                        Bạn có chắc muốn xóa record của <strong>{item.name}</strong>?
+                                                                        Bạn có chắc muốn xóa record #{item.id}?
                                                                         Hành động này không thể hoàn tác.
                                                                     </AlertDialogDescription>
                                                                 </AlertDialogHeader>
@@ -714,88 +666,17 @@ export default function App() {
                 </Card>
 
                 {/* Edit Dialog */}
-                <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>Chỉnh sửa Record</DialogTitle>
-                            <DialogDescription>
-                                Cập nhật thông tin cho record #{editingRecord?.id}
-                            </DialogDescription>
-                        </DialogHeader>
-                        {editingRecord && (
-                            <div className="grid gap-4 py-4">
-                                <div className="grid gap-2">
-                                    <Label htmlFor="edit-id">ID</Label>
-                                    <Input
-                                        id="edit-id"
-                                        type="number"
-                                        value={editingRecord?.id ?? ""}
-                                        onChange={(e) => setEditingRecord(prev => prev ? { ...prev, id: parseInt(e.target.value) || 0 } : null)}
-                                        placeholder="Nhập ID..."
-                                    />
-                                </div>
-                                <div className="grid gap-2">
-                                    <Label htmlFor="edit-name">Tên</Label>
-                                    <Input
-                                        id="edit-name"
-                                        value={editingRecord.name}
-                                        onChange={(e) => setEditingRecord(prev => prev ? { ...prev, name: e.target.value } : null)}
-                                        placeholder="Nhập tên..."
-                                    />
-                                </div>
-                                <div className="grid gap-2">
-                                    <Label htmlFor="edit-department">Phòng ban</Label>
-                                    <Input
-                                        id="edit-department"
-                                        value={editingRecord.department}
-                                        onChange={(e) => setEditingRecord(prev => prev ? { ...prev, department: e.target.value } : null)}
-                                        placeholder="Nhập phòng ban..."
-                                    />
-                                </div>
-                                <div className="grid gap-2">
-                                    <Label htmlFor="edit-revenue">Doanh thu (VND)</Label>
-                                    <Input
-                                        id="edit-revenue"
-                                        type="number"
-                                        value={editingRecord.revenue}
-                                        onChange={(e) => setEditingRecord(prev => prev ? { ...prev, revenue: parseFloat(e.target.value) || 0 } : null)}
-                                        placeholder="Nhập doanh thu..."
-                                    />
-                                </div>
-                                <div className="grid gap-2">
-                                    <Label htmlFor="edit-status">Trạng thái</Label>
-                                    <Select
-                                        value={editingRecord.status}
-                                        onValueChange={(value: "active" | "inactive" | "pending") =>
-                                            setEditingRecord(prev => prev ? { ...prev, status: value } : null)
-                                        }
-                                    >
-                                        <SelectTrigger>
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="active">Active</SelectItem>
-                                            <SelectItem value="inactive">Inactive</SelectItem>
-                                            <SelectItem value="pending">Pending</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
-                        )}
-                        <DialogFooter>
-                            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
-                                Hủy
-                            </Button>
-                            <Button onClick={handleSaveEdit}>
-                                Lưu thay đổi
-                            </Button>
-                        </DialogFooter>
-                    </DialogContent>
-                </Dialog>
+                <EditRecordDialog
+                    isOpen={isEditDialogOpen}
+                    onOpenChange={setIsEditDialogOpen}
+                    record={editingRecord}
+                    onSave={handleSaveEdit}
+                    existingIds={existingIds}
+                />
 
                 {/* Footer */}
                 <div className="text-center text-sm text-muted-foreground">
-                    <p>Datamart Dashboard V1 • Được xây dựng với React & shadcn/ui</p>
+                    <p>Student Performance Dashboard V1 • Được xây dựng với React & shadcn/ui</p>
                 </div>
             </div>
         </div>
