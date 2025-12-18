@@ -49,12 +49,12 @@ export function AddRecordDialog({ isOpen, onOpenChange, onAdd, existingIds }: Ad
             gender: newRecord.gender,
             race_ethnicity: newRecord.race_ethnicity,
             parental_education: newRecord.parental_education,
-            math_label: "Math",
-            math_score: parseFloat(newRecord.math_score),
-            reading_label: "Reading",
-            reading_score: parseFloat(newRecord.reading_score),
-            writing_label: "Writing",
-            writing_score: parseFloat(newRecord.writing_score),
+            math: "Math",
+            math_score: parseInt(newRecord.math_score) || 0,
+            reading: "Reading",
+            reading_score: parseInt(newRecord.reading_score) || 0,
+            writing: "Writing",
+            writing_score: parseInt(newRecord.writing_score) || 0,
             status: newRecord.status,
             lastUpdate: new Date().toISOString().split('T')[0]
         }

@@ -1,71 +1,14 @@
 import { useState, useEffect } from "react"
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from "react-router-dom"
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { toast } from "sonner"
 import { DataRecord } from "./types"
 import { DashboardPage } from "./pages/DashboardPage"
 import { StudentListPage } from "./pages/StudentListPage"
-import { LayoutDashboard, Users, GraduationCap } from "lucide-react"
-
-// Mock data and CSV functions (Keep existing logic)
-const initialMockData: DataRecord[] = [
-    { id: 1, gender: "male", race_ethnicity: "A", parental_education: "some college", math_label: "Math", math_score: 50, reading_label: "Reading", reading_score: 47, writing_label: "Writing", writing_score: 54, status: "active", lastUpdate: "2024-01-15" },
-]
-
-function parseCSV(csvText: string): DataRecord[] {
-    const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '')
-    const records: DataRecord[] = []
-    for (let i = 1; i < lines.length; i++) {
-        const line = lines[i]
-        const values: string[] = []
-        let current = ''
-        let inQuote = false
-        for (let j = 0; j < line.length; j++) {
-            const char = line[j]
-            if (char === '"') {
-                inQuote = !inQuote
-            } else if (char === ',' && !inQuote) {
-                values.push(current)
-                current = ''
-            } else {
-                current += char
-            }
-        }
-        values.push(current)
-        if (values.length >= 9) {
-            records.push({
-                id: i,
-                gender: values[0],
-                race_ethnicity: values[1],
-                parental_education: values[2],
-                math_label: values[3],
-                math_score: parseInt(values[4]) || 0,
-                reading_label: values[5],
-                reading_score: parseInt(values[6]) || 0,
-                writing_label: values[7],
-                writing_score: parseInt(values[8]) || 0,
-                status: "active",
-                lastUpdate: "2024-01-15"
-            })
-        }
-    }
-    return records
-}
-
-async function fetchCSVData(): Promise<DataRecord[]> {
-    try {
-        const response = await fetch('/data.csv')
-        if (!response.ok) throw new Error(`Failed to fetch CSV: ${response.status} ${response.statusText}`)
-        const csvText = await response.text()
-        return parseCSV(csvText)
-    } catch (error) {
-        console.error('Error loading CSV:', error)
-        return []
-    }
-}
-
-const STORAGE_KEY = "student_performance_records"
+import { LayoutDashboard, Users, GraduationCap, LogOut } from "lucide-react"
+import { AuthProvider, useAuth } from "./context/AuthContext"
+import { LoginPage } from "./pages/LoginPage"
 
 function NavLink({ to, children, icon: Icon }: { to: string; children: React.ReactNode; icon: any }) {
     const location = useLocation()
@@ -75,8 +18,8 @@ function NavLink({ to, children, icon: Icon }: { to: string; children: React.Rea
         <Link
             to={to}
             className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-muted"
+                ? "bg-primary text-primary-foreground"
+                : "text-muted-foreground hover:bg-muted"
                 }`}
         >
             <Icon className="h-4 w-4" />
@@ -85,99 +28,77 @@ function NavLink({ to, children, icon: Icon }: { to: string; children: React.Rea
     )
 }
 
-export default function App() {
-    const [data, setData] = useState<DataRecord[]>(initialMockData)
-    const [isLoaded, setIsLoaded] = useState(false)
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+    const { user, isLoading } = useAuth();
+
+    if (isLoading) return <div>Loading...</div>;
+
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return <>{children}</>;
+}
+
+function AppContent() {
+    const [data, setData] = useState<DataRecord[]>([])
     const [isRefreshing, setIsRefreshing] = useState(false)
+    const { user, logout } = useAuth();
 
-    // Load Data
-    useEffect(() => {
-        const loadData = async () => {
-            const saved = localStorage.getItem(STORAGE_KEY)
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved)
-                    if (parsed.length > 0 && typeof parsed[0].math_score === 'number') {
-                        setData(parsed)
-                        setIsLoaded(true)
-                        return
-                    }
-                } catch { }
-            }
-            const csvData = await fetchCSVData()
-            if (csvData.length > 0) {
-                setData(csvData)
-                toast.success("Đã tải dữ liệu từ CSV!")
-            } else {
-                setData(initialMockData)
-                toast.error("Không thể tải dữ liệu CSV! Đang dùng mẫu.")
-            }
-            setIsLoaded(true)
+    // Load Data from API
+    const loadData = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/students');
+            if (!response.ok) throw new Error("Failed to fetch");
+            const jsonData = await response.json();
+            setData(jsonData);
+            toast.success("Đã tải dữ liệu từ Database!");
+        } catch (error) {
+            console.error("Error loading data:", error);
+            toast.error("Không thể kết nối Server! Vui lòng kiểm tra.");
+            setData([]); // Or keep previous
         }
-        loadData()
-    }, [])
+    }
 
-    // Save Data
     useEffect(() => {
-        if (isLoaded) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+        if (user) {
+            loadData();
         }
-    }, [data, isLoaded])
+    }, [user]);
 
     // Actions
     const handleRefresh = async () => {
         setIsRefreshing(true)
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        const saved = localStorage.getItem(STORAGE_KEY)
-        if (saved) {
-            try {
-                const parsed = JSON.parse(saved)
-                setData(parsed)
-                toast.success("Đã làm mới dữ liệu!")
-            } catch {
-                setData(initialMockData)
-            }
-        }
+        await loadData();
         setIsRefreshing(false)
     }
 
-    const handleReset = async () => {
-        const csvData = await fetchCSVData()
-        if (csvData.length > 0) {
-            setData(csvData)
-            toast.success("Đã reset về dữ liệu gốc từ CSV!")
-        } else {
-            setData(initialMockData)
-        }
-    }
-
+    // Mock handlers for now (since we haven't implemented Full CRUD API in frontend yet)
+    // In a real app, these would call fetch('...', { method: 'POST' }) etc.
+    const handleReset = async () => { handleRefresh(); }
     const handleDelete = (id: number) => {
-        setData(prev => prev.filter(item => item.id !== id))
-        toast.success("Đã xóa bản ghi!")
+        setData(prev => prev.filter(item => item.id !== id));
+        toast.info("Chức năng xóa trên DB chưa được kích hoạt ở frontend này.");
     }
-
     const handleAddRecord = (record: DataRecord) => {
-        setData(prev => [...prev, record])
-        toast.success("Đã thêm bản ghi mới!")
+        setData(prev => [...prev, record]);
     }
-
     const handleUpdateRecord = (updatedRecord: DataRecord) => {
-        setData(prev => prev.map(item => item.id === updatedRecord.id ? updatedRecord : item))
-        toast.success("Đã cập nhật bản ghi!")
+        setData(prev => prev.map(item => item.id === updatedRecord.id ? updatedRecord : item));
     }
 
     return (
-        <Router>
-            <div className="min-h-screen bg-background flex flex-col">
-                <Toaster richColors position="top-right" />
+        <div className="min-h-screen bg-background flex flex-col">
+            <Toaster richColors position="top-right" />
 
-                {/* Navbar */}
+            {/* Navbar */}
+            {user && (
                 <header className="border-b bg-card">
                     <div className="mx-auto max-w-7xl px-4 md:px-8 h-16 flex items-center justify-between">
                         <div className="flex items-center gap-8">
                             <div className="flex items-center gap-2 font-bold text-xl">
                                 <GraduationCap className="h-6 w-6 text-primary" />
-                                <span>Student's Datamart View   </span>
+                                <span>Student's Datamart ({user.name})</span>
                             </div>
 
                             <nav className="hidden md:flex items-center gap-2">
@@ -188,18 +109,28 @@ export default function App() {
 
                         <div className="flex items-center gap-4">
                             <ThemeToggle />
+                            <button onClick={logout} className="p-2 hover:bg-muted rounded-full" title="Logout">
+                                <LogOut className="h-5 w-5" />
+                            </button>
                         </div>
                     </div>
                 </header>
+            )}
 
-                {/* Main Content */}
-                <main className="flex-1 p-4 md:p-8">
-                    <div className="mx-auto max-w-7xl">
-                        <Routes>
-                            <Route path="/" element={<DashboardPage data={data} />} />
-                            <Route
-                                path="/students"
-                                element={
+            {/* Main Content */}
+            <main className="flex-1 p-4 md:p-8">
+                <div className="mx-auto max-w-7xl">
+                    <Routes>
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/" element={
+                            <ProtectedRoute>
+                                <DashboardPage data={data} />
+                            </ProtectedRoute>
+                        } />
+                        <Route
+                            path="/students"
+                            element={
+                                <ProtectedRoute>
                                     <StudentListPage
                                         data={data}
                                         onAdd={handleAddRecord}
@@ -209,12 +140,22 @@ export default function App() {
                                         onReset={handleReset}
                                         isRefreshing={isRefreshing}
                                     />
-                                }
-                            />
-                        </Routes>
-                    </div>
-                </main>
-            </div>
+                                </ProtectedRoute>
+                            }
+                        />
+                    </Routes>
+                </div>
+            </main>
+        </div>
+    )
+}
+
+export default function App() {
+    return (
+        <Router>
+            <AuthProvider>
+                <AppContent />
+            </AuthProvider>
         </Router>
     )
 }

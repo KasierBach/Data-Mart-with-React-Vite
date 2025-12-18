@@ -92,11 +92,11 @@ export function StudentListPage({
                     item.gender.toLowerCase().includes(lowerTerm) ||
                     item.race_ethnicity.toLowerCase().includes(lowerTerm) ||
                     item.parental_education.toLowerCase().includes(lowerTerm) ||
-                    item.math_label.toLowerCase().includes(lowerTerm) ||
+                    item.math.toLowerCase().includes(lowerTerm) ||
                     item.math_score.toString().includes(lowerTerm) ||
-                    item.reading_label.toLowerCase().includes(lowerTerm) ||
+                    item.reading.toLowerCase().includes(lowerTerm) ||
                     item.reading_score.toString().includes(lowerTerm) ||
-                    item.writing_label.toLowerCase().includes(lowerTerm) ||
+                    item.writing.toLowerCase().includes(lowerTerm) ||
                     item.writing_score.toString().includes(lowerTerm) ||
                     item.status.toLowerCase().includes(lowerTerm) ||
                     item.lastUpdate.toLowerCase().includes(lowerTerm)) &&
@@ -191,11 +191,11 @@ export function StudentListPage({
                     item.gender,
                     `"${item.race_ethnicity}"`,
                     `"${item.parental_education}"`,
-                    item.math_label,
+                    item.math,
                     item.math_score,
-                    item.reading_label,
+                    item.reading,
                     item.reading_score,
-                    item.writing_label,
+                    item.writing,
                     item.writing_score,
                     item.status,
                     item.lastUpdate
