@@ -6,15 +6,14 @@ const pool = new Pool({
 });
 
 const users = [
-    { username: 'principal', password: 'password', role: 'principal', name: 'Hiệu Trưởng' },
-    { username: 'vice_principal', password: 'password', role: 'vice_principal', name: 'Phó Hiệu Trưởng' },
-    { username: 'teacher', password: 'password', role: 'teacher', name: 'Giáo Viên' },
-    { username: 'head_dept', password: 'password', role: 'head_dept', name: 'Trưởng Khoa' },
-    { username: 'academic_affairs', password: 'password', role: 'academic_affairs', name: 'Giáo Vụ' },
-    { username: 'qa_testing', password: 'password', role: 'qa_testing', name: 'Khảo Thí' },
-    { username: 'student_affairs', password: 'password', role: 'student_affairs', name: 'Công Tác Sinh Viên' },
-    { username: 'student', password: 'password', role: 'student', name: 'Học Sinh' },
-    // Ensure existing ones match new role names if needed, or just add new ones
+    { username: 'principal', password: 'principal123', role: 'principal', name: 'Nguyễn Văn An', email: 'principal@school.edu.vn', phone: '0901234567' },
+    { username: 'vice_principal', password: 'viceprincipal123', role: 'vice_principal', name: 'Trần Thị Bình', email: 'viceprincipal@school.edu.vn', phone: '0902345678' },
+    { username: 'teacher', password: 'teacher123', role: 'teacher', name: 'Lê Văn Cường', email: 'teacher@school.edu.vn', phone: '0903456789' },
+    { username: 'head_dept', password: 'headdept123', role: 'head_dept', name: 'Phạm Thị Dung', email: 'headdept@school.edu.vn', phone: '0904567890' },
+    { username: 'academic_affairs', password: 'academic123', role: 'academic_affairs', name: 'Hoàng Văn Em', email: 'academic@school.edu.vn', phone: '0905678901' },
+    { username: 'qa_testing', password: 'qatesting123', role: 'qa_testing', name: 'Ngô Thị Phương', email: 'qa@school.edu.vn', phone: '0906789012' },
+    { username: 'student_affairs', password: 'studentaffairs123', role: 'student_affairs', name: 'Đặng Văn Giang', email: 'studentaffairs@school.edu.vn', phone: '0907890123' },
+    { username: 'student', password: 'student123', role: 'student', name: 'Vũ Minh Hùng', email: 'student@school.edu.vn', phone: '0908901234' },
 ];
 
 async function seedUsers() {
@@ -24,12 +23,12 @@ async function seedUsers() {
 
         for (const user of users) {
             const query = `
-        INSERT INTO users (username, password, role, name)
-        VALUES ($1, $2, $3, $4)
+        INSERT INTO users (username, password, role, name, email, phone)
+        VALUES ($1, $2, $3, $4, $5, $6)
         ON CONFLICT (username) 
-        DO UPDATE SET role = $3, name = $4; -- Update if exists to ensure role matches
+        DO UPDATE SET password = $2, role = $3, name = $4, email = $5, phone = $6;
       `;
-            await pool.query(query, [user.username, user.password, user.role, user.name]);
+            await pool.query(query, [user.username, user.password, user.role, user.name, user.email, user.phone]);
             console.log(`User ${user.username} upserted.`);
         }
 

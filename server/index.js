@@ -30,7 +30,7 @@ app.post('/api/login', async (req, res) => {
       const user = result.rows[0];
       // Simple password check (In production, use bcrypt)
       if (user.password === password) {
-        res.json({ success: true, user: { username: user.username, role: user.role, name: user.name } });
+        res.json({ success: true, user: { username: user.username, role: user.role, name: user.name, email: user.email, phone: user.phone } });
       } else {
         res.status(401).json({ success: false, message: 'Invalid credentials' });
       }

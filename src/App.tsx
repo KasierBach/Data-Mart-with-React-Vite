@@ -3,12 +3,50 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } f
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { toast } from "sonner"
-import { DataRecord } from "./types"
+import { DataRecord, Role } from "./types"
 import { DashboardPage } from "./pages/DashboardPage"
 import { StudentListPage } from "./pages/StudentListPage"
-import { LayoutDashboard, Users, GraduationCap, LogOut } from "lucide-react"
+import { LayoutDashboard, Users, GraduationCap, LogOut, User, ChevronDown, Mail, Phone } from "lucide-react"
 import { AuthProvider, useAuth } from "./context/AuthContext"
 import { LoginPage } from "./pages/LoginPage"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+// Helper function to get role display name
+const getRoleDisplayName = (role: Role): string => {
+    const roleMap: Record<Role, string> = {
+        principal: 'Hiệu trưởng',
+        vice_principal: 'Ban giám hiệu',
+        head_dept: 'Trưởng khoa',
+        teacher: 'Giáo viên',
+        academic_affairs: 'Giáo vụ',
+        qa_testing: 'Khảo thí',
+        student_affairs: 'Công tác sinh viên',
+        student: 'Học sinh',
+    };
+    return roleMap[role] || role;
+};
+
+// Helper function to get role color
+const getRoleBadgeColor = (role: Role): string => {
+    const colorMap: Record<Role, string> = {
+        principal: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
+        vice_principal: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+        head_dept: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+        teacher: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+        academic_affairs: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+        qa_testing: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+        student_affairs: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
+        student: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200',
+    };
+    return colorMap[role] || 'bg-gray-100 text-gray-800';
+};
 
 function NavLink({ to, children, icon: Icon }: { to: string; children: React.ReactNode; icon: any }) {
     const location = useLocation()
@@ -98,7 +136,7 @@ function AppContent() {
                         <div className="flex items-center gap-8">
                             <div className="flex items-center gap-2 font-bold text-xl">
                                 <GraduationCap className="h-6 w-6 text-primary" />
-                                <span>Student's Datamart ({user.name})</span>
+                                <span>Student's Datamart</span>
                             </div>
 
                             <nav className="hidden md:flex items-center gap-2">
@@ -107,11 +145,71 @@ function AppContent() {
                             </nav>
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                             <ThemeToggle />
-                            <button onClick={logout} className="p-2 hover:bg-muted rounded-full" title="Logout">
-                                <LogOut className="h-5 w-5" />
-                            </button>
+
+                            {/* User Account Dropdown */}
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors border">
+                                        <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                                            <User className="h-4 w-4 text-primary" />
+                                        </div>
+                                        <div className="hidden sm:block text-left">
+                                            <p className="text-sm font-medium leading-tight">{user.name}</p>
+                                            <p className="text-xs text-muted-foreground">{user.username}</p>
+                                        </div>
+                                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                    </button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" className="w-64">
+                                    <DropdownMenuLabel className="font-normal">
+                                        <div className="flex flex-col space-y-2">
+                                            <div className="flex items-center gap-3">
+                                                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                                    <User className="h-5 w-5 text-primary" />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <p className="text-sm font-semibold">{user.name}</p>
+                                                    <p className="text-xs text-muted-foreground">@{user.username}</p>
+                                                </div>
+                                            </div>
+                                            <div className="pt-1">
+                                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRoleBadgeColor(user.role)}`}>
+                                                    {getRoleDisplayName(user.role)}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem className="text-xs text-muted-foreground" disabled>
+                                        <span>Vai trò: {getRoleDisplayName(user.role)}</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem className="text-xs text-muted-foreground" disabled>
+                                        <span>Username: {user.username}</span>
+                                    </DropdownMenuItem>
+                                    {user.email && (
+                                        <DropdownMenuItem className="text-xs text-muted-foreground" disabled>
+                                            <Mail className="h-3 w-3 mr-2" />
+                                            <span>{user.email}</span>
+                                        </DropdownMenuItem>
+                                    )}
+                                    {user.phone && (
+                                        <DropdownMenuItem className="text-xs text-muted-foreground" disabled>
+                                            <Phone className="h-3 w-3 mr-2" />
+                                            <span>{user.phone}</span>
+                                        </DropdownMenuItem>
+                                    )}
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem
+                                        onClick={logout}
+                                        className="text-red-600 dark:text-red-400 cursor-pointer"
+                                    >
+                                        <LogOut className="h-4 w-4 mr-2" />
+                                        <span>Đăng xuất</span>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                         </div>
                     </div>
                 </header>
