@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } f
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { toast } from "sonner"
-import { DataRecord, Role } from "./types"
+import { DataRecord } from "./types"
 import { DashboardPage } from "./pages/DashboardPage"
 import { StudentListPage } from "./pages/StudentListPage"
-import { LayoutDashboard, Users, GraduationCap, LogOut, User, ChevronDown, Mail, Phone } from "lucide-react"
+import { LayoutDashboard, Users, GraduationCap, LogOut, User, ChevronDown, Mail, Phone, History } from "lucide-react"
 import { AuthProvider, useAuth } from "./context/AuthContext"
 import { LoginPage } from "./pages/LoginPage"
+import { AuditLogPage } from "./pages/AuditLogPage"
+import { getRoleDisplayName, getRoleBadgeColor, canAccessAuditLogs } from "./utils/roleHelpers"
+import { API_ENDPOINTS } from "./config/api"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,35 +21,6 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-// Helper function to get role display name
-const getRoleDisplayName = (role: Role): string => {
-    const roleMap: Record<Role, string> = {
-        principal: 'Hiệu trưởng',
-        vice_principal: 'Ban giám hiệu',
-        head_dept: 'Trưởng khoa',
-        teacher: 'Giáo viên',
-        academic_affairs: 'Giáo vụ',
-        qa_testing: 'Khảo thí',
-        student_affairs: 'Công tác sinh viên',
-        student: 'Học sinh',
-    };
-    return roleMap[role] || role;
-};
-
-// Helper function to get role color
-const getRoleBadgeColor = (role: Role): string => {
-    const colorMap: Record<Role, string> = {
-        principal: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-        vice_principal: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-        head_dept: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-        teacher: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-        academic_affairs: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-        qa_testing: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-        student_affairs: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
-        student: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200',
-    };
-    return colorMap[role] || 'bg-gray-100 text-gray-800';
-};
 
 function NavLink({ to, children, icon: Icon }: { to: string; children: React.ReactNode; icon: any }) {
     const location = useLocation()
@@ -86,7 +60,7 @@ function AppContent() {
     // Load Data from API
     const loadData = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/students');
+            const response = await fetch(API_ENDPOINTS.STUDENTS);
             if (!response.ok) throw new Error("Failed to fetch");
             const jsonData = await response.json();
             setData(jsonData);
@@ -142,7 +116,11 @@ function AppContent() {
                             <nav className="hidden md:flex items-center gap-2">
                                 <NavLink to="/" icon={LayoutDashboard}>Dashboard</NavLink>
                                 <NavLink to="/students" icon={Users}>Students</NavLink>
+                                {canAccessAuditLogs(user.role) && (
+                                    <NavLink to="/audit-logs" icon={History}>Logs</NavLink>
+                                )}
                             </nav>
+
                         </div>
 
                         <div className="flex items-center gap-3">
@@ -238,6 +216,18 @@ function AppContent() {
                                         onReset={handleReset}
                                         isRefreshing={isRefreshing}
                                     />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/audit-logs"
+                            element={
+                                <ProtectedRoute>
+                                    {user && canAccessAuditLogs(user.role) ? (
+                                        <AuditLogPage />
+                                    ) : (
+                                        <Navigate to="/" replace />
+                                    )}
                                 </ProtectedRoute>
                             }
                         />

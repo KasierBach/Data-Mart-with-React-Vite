@@ -1,7 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const { Pool } = require('pg');
 require('dotenv').config();
+
+// Import routes
+const authRoutes = require('./routes/auth');
+const auditLogsRoutes = require('./routes/auditLogs');
+const studentsRoutes = require('./routes/students');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,48 +14,17 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Database Connection
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-pool.connect()
-  .then(() => console.log('Connected to PostgreSQL successfully!'))
-  .catch(err => console.error('Connection error', err.stack));
+// Initialize database connection
+require('./config/db');
 
 // Routes
+app.use('/api', authRoutes);
+app.use('/api/audit-logs', auditLogsRoutes);
+app.use('/api/students', studentsRoutes);
 
-// Login Endpoint
-app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body;
-  try {
-    const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
-    if (result.rows.length > 0) {
-      const user = result.rows[0];
-      // Simple password check (In production, use bcrypt)
-      if (user.password === password) {
-        res.json({ success: true, user: { username: user.username, role: user.role, name: user.name, email: user.email, phone: user.phone } });
-      } else {
-        res.status(401).json({ success: false, message: 'Invalid credentials' });
-      }
-    } else {
-      res.status(401).json({ success: false, message: 'User not found' });
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: 'Server error' });
-  }
-});
-
-// Get Students Endpoint - UPDATED TABLE NAME
-app.get('/api/students', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM fact_scores_15dec ORDER BY id ASC');
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Database error' });
-  }
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 // Start Server

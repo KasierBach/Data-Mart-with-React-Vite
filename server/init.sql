@@ -35,3 +35,18 @@ INSERT INTO users (username, password, role, name) VALUES
 ('student_affairs', 'password', 'student_affairs', 'Công Tác Sinh Viên'),
 ('student', 'password', 'student', 'Học Sinh')
 ON CONFLICT (username) DO UPDATE SET role = EXCLUDED.role, name = EXCLUDED.name;
+
+-- Create Audit Logs Table
+CREATE TABLE IF NOT EXISTS audit_logs (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    username VARCHAR(50),
+    action VARCHAR(50) NOT NULL,
+    details TEXT,
+    ip_address VARCHAR(45),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_audit_logs_username ON audit_logs(username);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_created_at ON audit_logs(created_at DESC);
+

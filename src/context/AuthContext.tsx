@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 // Importing App-specific types might be circular if not careful. For now, local types.
 
 import { Role } from "../types";
+import { API_ENDPOINTS } from "../config/api";
 
 // export type Role = ... (Removed, utilizing shared type)
 
@@ -41,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const login = async (username: string, password: string) => {
         try {
             // Call our new Express API
-            const response = await fetch('http://localhost:3000/api/login', {
+            const response = await fetch(API_ENDPOINTS.LOGIN, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
