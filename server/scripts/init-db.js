@@ -10,7 +10,7 @@ const pool = new Pool({
 async function initDb() {
     const client = await pool.connect();
     try {
-        const sqlPath = path.join(__dirname, 'init.sql');
+        const sqlPath = path.join(__dirname, '../init.sql');
         const sql = fs.readFileSync(sqlPath, 'utf8');
 
         console.log('Running init.sql...');

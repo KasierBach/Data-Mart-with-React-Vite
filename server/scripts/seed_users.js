@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
 });
 
 const users = [
@@ -19,24 +20,37 @@ const users = [
 async function seedUsers() {
     try {
         console.log('Connecting to database...');
-        await pool.connect();
+        const client = await pool.connect();
+
+        // First, add the missing columns if they don't exist
+        console.log('Adding email and phone columns if not exist...');
+        await client.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS email VARCHAR(100)');
+        await client.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS phone VARCHAR(20)');
 
         for (const user of users) {
+            const username = user.username.replace(/'/g, "''");
+            const password = user.password.replace(/'/g, "''");
+            const role = user.role.replace(/'/g, "''");
+            const name = user.name.replace(/'/g, "''");
+            const email = user.email.replace(/'/g, "''");
+            const phone = user.phone.replace(/'/g, "''");
+
             const query = `
-        INSERT INTO users (username, password, role, name, email, phone)
-        VALUES ($1, $2, $3, $4, $5, $6)
-        ON CONFLICT (username) 
-        DO UPDATE SET password = $2, role = $3, name = $4, email = $5, phone = $6;
-      `;
-            await pool.query(query, [user.username, user.password, user.role, user.name, user.email, user.phone]);
+                INSERT INTO users (username, password, role, name, email, phone)
+                VALUES ('${username}', '${password}', '${role}', '${name}', '${email}', '${phone}')
+                ON CONFLICT (username) 
+                DO UPDATE SET password = '${password}', role = '${role}', name = '${name}', email = '${email}', phone = '${phone}'
+            `;
+            await client.query(query);
             console.log(`User ${user.username} upserted.`);
         }
 
-        console.log('All users seeded successfully.');
+        console.log('All users seeded successfully!');
+        client.release();
+        pool.end();
     } catch (err) {
         console.error('Error seeding users:', err);
-    } finally {
-        await pool.end();
+        pool.end();
     }
 }
 

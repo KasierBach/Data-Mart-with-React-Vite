@@ -4,7 +4,9 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     role VARCHAR(20) NOT NULL,
-    name VARCHAR(100)
+    name VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(20)
 );
 
 -- Create Data Mart Table
