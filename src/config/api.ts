@@ -13,6 +13,9 @@ export const API_ENDPOINTS = {
     // Audit Logs
     AUDIT_LOGS: `${API_BASE_URL}/api/audit-logs`,
 
+    // Users
+    USERS: `${API_BASE_URL}/api/users`,
+
     // Health check
     HEALTH: `${API_BASE_URL}/api/health`,
 };

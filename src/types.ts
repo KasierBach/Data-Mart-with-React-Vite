@@ -13,4 +13,4 @@ export interface DataRecord {
     lastUpdate: string
 }
 
-export type Role = 'principal' | 'vice_principal' | 'head_dept' | 'teacher' | 'academic_affairs' | 'qa_testing' | 'student_affairs' | 'student';
+export type Role = 'principal' | 'vice_principal' | 'head_dept' | 'teacher' | 'academic_affairs' | 'qa_testing' | 'student_affairs' | 'student' | 'no_role';

@@ -28,6 +28,23 @@ import { Button } from "@/components/ui/button"
 import { DashboardProps } from "./types"
 import { THEME_COLORS } from "./constants"
 
+// Mock Data for Detailed Views
+const EXCELLENT_TEACHERS = [
+    { id: 'GV001', name: 'Nguyễn Văn A', subject: 'Toán', achievement: 'Giải Nhất Giáo viên dạy giỏi cấp Thành phố' },
+    { id: 'GV005', name: 'Trần Thị B', subject: 'Văn', achievement: 'Sáng kiến kinh nghiệm loại A' },
+    { id: 'GV012', name: 'Lê Văn C', subject: 'Lý', achievement: 'Bồi dưỡng đội tuyển HSG đạt giải Quốc gia' },
+    { id: 'GV008', name: 'Phạm Thị D', subject: 'Anh', achievement: 'Đổi mới phương pháp giảng dạy tích cực' },
+    { id: 'GV020', name: 'Hoàng Văn E', subject: 'Hóa', achievement: '100% học sinh đạt điểm giỏi kỳ thi cuối kỳ' },
+]
+
+const SUPPORT_NEEDS_DETAILED = [
+    { id: 'HS102', name: 'Nguyễn Văn X', class: '10A1', type: 'Tài chính', note: 'Gia đình khó khăn, xin miễn giảm học phí' },
+    { id: 'HS205', name: 'Lê Thị Y', class: '11B2', type: 'Tâm lý', note: 'Có biểu hiện trầm cảm, cần tư vấn' },
+    { id: 'HS310', name: 'Trần Văn Z', class: '12C3', type: 'Học tập', note: 'Mất gốc môn Toán, cần phụ đạo' },
+    { id: 'HS115', name: 'Phạm Thị K', class: '10A5', type: 'Sức khỏe', note: 'Bệnh tim bẩm sinh, cần chú ý vận động' },
+    { id: 'HS220', name: 'Vũ Văn M', class: '11B4', type: 'Tài chính', note: 'Xin hỗ trợ học bổng vượt khó' },
+]
+
 export function VicePrincipalDashboard(props: DashboardProps) {
     const {
         insights,
@@ -242,6 +259,84 @@ export function VicePrincipalDashboard(props: DashboardProps) {
                                     Sau <ChevronRight className="h-4 w-4 ml-1" />
                                 </Button>
                             </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+
+            {/* Excellent Teachers and Support Needs Tables */}
+            <div className="grid gap-6 mt-6">
+                {/* Excellent Teachers List */}
+                <Card className="col-span-2 shadow-sm border-t-4 border-t-indigo-500">
+                    <CardHeader>
+                        <CardTitle className="text-indigo-700">Danh sách Giáo viên Xuất sắc</CardTitle>
+                        <CardDescription>Các giáo viên có thành tích nổi bật trong học kỳ qua.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="rounded-md border">
+                            <Table>
+                                <TableHeader className="bg-indigo-50">
+                                    <TableRow>
+                                        <TableHead className="text-indigo-900 font-bold">Mã GV</TableHead>
+                                        <TableHead className="text-indigo-900 font-bold">Họ tên</TableHead>
+                                        <TableHead className="text-indigo-900 font-bold">Bộ môn</TableHead>
+                                        <TableHead className="text-indigo-900 font-bold">Thành tích nổi bật</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {EXCELLENT_TEACHERS.map((t) => (
+                                        <TableRow key={t.id}>
+                                            <TableCell className="font-medium">{t.id}</TableCell>
+                                            <TableCell className="font-medium text-indigo-700">{t.name}</TableCell>
+                                            <TableCell>{t.subject}</TableCell>
+                                            <TableCell><Badge variant="outline" className="border-green-500 text-green-600 bg-green-50">{t.achievement}</Badge></TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* Support Needs List */}
+                <Card className="col-span-2 shadow-sm border-t-4 border-t-blue-500">
+                    <CardHeader>
+                        <CardTitle className="text-blue-700">Chi tiết Nhu cầu Hỗ trợ</CardTitle>
+                        <CardDescription>Danh sách học sinh cần hỗ trợ đặc biệt.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="rounded-md border">
+                            <Table>
+                                <TableHeader className="bg-blue-50">
+                                    <TableRow>
+                                        <TableHead className="text-blue-900 font-bold">Mã HS</TableHead>
+                                        <TableHead className="text-blue-900 font-bold">Họ tên</TableHead>
+                                        <TableHead className="text-blue-900 font-bold">Lớp</TableHead>
+                                        <TableHead className="text-blue-900 font-bold">Loại hỗ trợ</TableHead>
+                                        <TableHead className="text-blue-900 font-bold">Ghi chú</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {SUPPORT_NEEDS_DETAILED.map((s) => (
+                                        <TableRow key={s.id}>
+                                            <TableCell className="font-medium">{s.id}</TableCell>
+                                            <TableCell className="font-medium text-blue-700">{s.name}</TableCell>
+                                            <TableCell>{s.class}</TableCell>
+                                            <TableCell>
+                                                <Badge variant="outline" className={
+                                                    s.type === 'Tài chính' ? 'text-green-600 border-green-600 bg-green-50' :
+                                                        s.type === 'Tâm lý' ? 'text-purple-600 border-purple-600 bg-purple-50' :
+                                                            s.type === 'Sức khỏe' ? 'text-red-600 border-red-600 bg-red-50' :
+                                                                'text-blue-600 border-blue-600 bg-blue-50'
+                                                }>
+                                                    {s.type}
+                                                </Badge>
+                                            </TableCell>
+                                            <TableCell className="text-muted-foreground italic">{s.note}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
                         </div>
                     </CardContent>
                 </Card>

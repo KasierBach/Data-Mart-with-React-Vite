@@ -6,6 +6,7 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const auditLogsRoutes = require('./routes/auditLogs');
 const studentsRoutes = require('./routes/students');
+const usersRoutes = require('./routes/users');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,6 +22,7 @@ require('./config/db');
 app.use('/api', authRoutes);
 app.use('/api/audit-logs', auditLogsRoutes);
 app.use('/api/students', studentsRoutes);
+app.use('/api/users', usersRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

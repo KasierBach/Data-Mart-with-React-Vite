@@ -6,12 +6,14 @@ import { toast } from "sonner"
 import { DataRecord } from "./types"
 import { DashboardPage } from "./pages/DashboardPage"
 import { StudentListPage } from "./pages/StudentListPage"
-import { LayoutDashboard, Users, GraduationCap, LogOut, User, ChevronDown, Mail, Phone, History } from "lucide-react"
+import { LayoutDashboard, Users, GraduationCap, LogOut, User, ChevronDown, Mail, Phone, History, Shield, Settings } from "lucide-react"
 import { AuthProvider, useAuth } from "./context/AuthContext"
 import { LoginPage } from "./pages/LoginPage"
 import { AuditLogPage } from "./pages/AuditLogPage"
-import { getRoleDisplayName, getRoleBadgeColor, canAccessAuditLogs } from "./utils/roleHelpers"
+import { getRoleDisplayName, getRoleBadgeColor, canAccessAuditLogs, canManageStudents } from "./utils/roleHelpers"
 import { API_ENDPOINTS } from "./config/api"
+import { UsersPage } from "./pages/UsersPage"
+import { ProfileDialog } from "./components/ProfileDialog"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -55,6 +57,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function AppContent() {
     const [data, setData] = useState<DataRecord[]>([])
     const [isRefreshing, setIsRefreshing] = useState(false)
+    const [profileOpen, setProfileOpen] = useState(false)
     const { user, logout } = useAuth();
 
     // Load Data from API
@@ -115,9 +118,14 @@ function AppContent() {
 
                             <nav className="hidden md:flex items-center gap-2">
                                 <NavLink to="/" icon={LayoutDashboard}>Dashboard</NavLink>
-                                <NavLink to="/students" icon={Users}>Students</NavLink>
+                                {canManageStudents(user.role) && (
+                                    <NavLink to="/students" icon={Users}>Students</NavLink>
+                                )}
                                 {canAccessAuditLogs(user.role) && (
                                     <NavLink to="/audit-logs" icon={History}>Logs</NavLink>
+                                )}
+                                {user.role === 'principal' && (
+                                    <NavLink to="/users" icon={Shield}>Users</NavLink>
                                 )}
                             </nav>
 
@@ -179,6 +187,11 @@ function AppContent() {
                                         </DropdownMenuItem>
                                     )}
                                     <DropdownMenuSeparator />
+                                    <DropdownMenuItem onClick={() => setProfileOpen(true)} className="cursor-pointer">
+                                        <Settings className="h-4 w-4 mr-2" />
+                                        <span>Cài đặt tài khoản</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
                                     <DropdownMenuItem
                                         onClick={logout}
                                         className="text-red-600 dark:text-red-400 cursor-pointer"
@@ -207,15 +220,19 @@ function AppContent() {
                             path="/students"
                             element={
                                 <ProtectedRoute>
-                                    <StudentListPage
-                                        data={data}
-                                        onAdd={handleAddRecord}
-                                        onUpdate={handleUpdateRecord}
-                                        onDelete={handleDelete}
-                                        onRefresh={handleRefresh}
-                                        onReset={handleReset}
-                                        isRefreshing={isRefreshing}
-                                    />
+                                    {user && canManageStudents(user.role) ? (
+                                        <StudentListPage
+                                            data={data}
+                                            onAdd={handleAddRecord}
+                                            onUpdate={handleUpdateRecord}
+                                            onDelete={handleDelete}
+                                            onRefresh={handleRefresh}
+                                            onReset={handleReset}
+                                            isRefreshing={isRefreshing}
+                                        />
+                                    ) : (
+                                        <Navigate to="/" replace />
+                                    )}
                                 </ProtectedRoute>
                             }
                         />
@@ -231,9 +248,22 @@ function AppContent() {
                                 </ProtectedRoute>
                             }
                         />
+                        <Route
+                            path="/users"
+                            element={
+                                <ProtectedRoute>
+                                    {user && user.role === 'principal' ? (
+                                        <UsersPage />
+                                    ) : (
+                                        <Navigate to="/" replace />
+                                    )}
+                                </ProtectedRoute>
+                            }
+                        />
                     </Routes>
                 </div>
             </main>
+            <ProfileDialog open={profileOpen} onOpenChange={setProfileOpen} />
         </div>
     )
 }

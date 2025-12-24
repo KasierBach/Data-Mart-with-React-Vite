@@ -11,6 +11,7 @@ export const getRoleDisplayName = (role: Role): string => {
         qa_testing: 'Khảo thí',
         student_affairs: 'Công tác sinh viên',
         student: 'Học sinh',
+        no_role: 'Chưa phân quyền',
     };
     return roleMap[role] || role;
 };
@@ -26,6 +27,7 @@ export const getRoleBadgeColor = (role: Role): string => {
         qa_testing: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
         student_affairs: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
         student: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200',
+        no_role: 'bg-slate-100 text-slate-500 border border-slate-200 dark:bg-slate-900/50 dark:text-slate-400',
     };
     return colorMap[role] || 'bg-gray-100 text-gray-800';
 };
@@ -35,4 +37,11 @@ export const AUDIT_LOG_ROLES: Role[] = ['principal', 'vice_principal', 'head_dep
 
 export const canAccessAuditLogs = (role: Role): boolean => {
     return AUDIT_LOG_ROLES.includes(role);
+};
+
+// Roles that can manage students
+export const MANAGE_STUDENT_ROLES: Role[] = ['principal', 'vice_principal'];
+
+export const canManageStudents = (role: Role): boolean => {
+    return MANAGE_STUDENT_ROLES.includes(role);
 };
