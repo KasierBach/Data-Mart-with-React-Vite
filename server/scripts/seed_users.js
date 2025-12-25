@@ -1,10 +1,4 @@
-const { Pool } = require('pg');
-require('dotenv').config();
-
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
-});
+const prisma = require('../utils/prisma');
 
 const users = [
     { username: 'principal', password: 'principal123', role: 'principal', name: 'Nguyễn Văn An', email: 'principal@school.edu.vn', phone: '0901234567' },
@@ -19,38 +13,28 @@ const users = [
 
 async function seedUsers() {
     try {
-        console.log('Connecting to database...');
-        const client = await pool.connect();
-
-        // First, add the missing columns if they don't exist
-        console.log('Adding email and phone columns if not exist...');
-        await client.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS email VARCHAR(100)');
-        await client.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS phone VARCHAR(20)');
+        console.log('Seeding users using Prisma...');
 
         for (const user of users) {
-            const username = user.username.replace(/'/g, "''");
-            const password = user.password.replace(/'/g, "''");
-            const role = user.role.replace(/'/g, "''");
-            const name = user.name.replace(/'/g, "''");
-            const email = user.email.replace(/'/g, "''");
-            const phone = user.phone.replace(/'/g, "''");
-
-            const query = `
-                INSERT INTO users (username, password, role, name, email, phone)
-                VALUES ('${username}', '${password}', '${role}', '${name}', '${email}', '${phone}')
-                ON CONFLICT (username) 
-                DO UPDATE SET password = '${password}', role = '${role}', name = '${name}', email = '${email}', phone = '${phone}'
-            `;
-            await client.query(query);
+            await prisma.user.upsert({
+                where: { username: user.username },
+                update: {
+                    password: user.password,
+                    role: user.role,
+                    name: user.name,
+                    email: user.email,
+                    phone: user.phone
+                },
+                create: user
+            });
             console.log(`User ${user.username} upserted.`);
         }
 
         console.log('All users seeded successfully!');
-        client.release();
-        pool.end();
     } catch (err) {
-        console.error('Error seeding users:', err);
-        pool.end();
+        console.error('Error seeding users:', err.message || err);
+    } finally {
+        await prisma.$disconnect();
     }
 }
 

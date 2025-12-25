@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  password String
+  role     String
+  name     String?
+  email    String?
+  phone    String?
+
+  @@map("users")
+}
+
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  user_id    Int?     @map("user_id")
+  username   String?
+  action     String
+  details    String?
+  ip_address String?  @map("ip_address")
+  created_at DateTime @default(now()) @map("created_at")
+
+  @@map("audit_logs")
+}
+
+model FactScore {
+  id                 Int     @id @default(autoincrement())
+  gender             String?
+  race_ethnicity     String? @map("race_ethnicity")
+  parental_education String? @map("parental_education")
+  math               String?
+  math_score         Int?    @map("math_score")
+  reading            String?
+  reading_score      Int?    @map("reading_score")
+  writing            String?
+  writing_score      Int?    @map("writing_score")
+
+  @@map("fact_scores_15dec")
+}
