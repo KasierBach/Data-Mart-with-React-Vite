@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../config/db');
+const prisma = require('../utils/prisma');
 
 // Get all audit logs
 router.get('/', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM audit_logs ORDER BY created_at DESC LIMIT 100');
-        res.json(result.rows);
+        const logs = await prisma.auditLog.findMany({
+            take: 100,
+            orderBy: {
+                created_at: 'desc'
+            }
+        });
+        res.json(logs);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Database error' });
@@ -17,7 +22,9 @@ router.get('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        await pool.query('DELETE FROM audit_logs WHERE id = $1', [id]);
+        await prisma.auditLog.delete({
+            where: { id: parseInt(id) }
+        });
         res.json({ success: true });
     } catch (err) {
         console.error(err);
@@ -28,7 +35,7 @@ router.delete('/:id', async (req, res) => {
 // Clear all audit logs
 router.delete('/', async (req, res) => {
     try {
-        await pool.query('DELETE FROM audit_logs');
+        await prisma.auditLog.deleteMany();
         res.json({ success: true, message: 'All logs cleared' });
     } catch (err) {
         console.error(err);

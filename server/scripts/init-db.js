@@ -1,26 +1,25 @@
 const fs = require('fs');
 const path = require('path');
-const { Pool } = require('pg');
-require('dotenv').config();
-
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-});
+const prisma = require('../utils/prisma');
 
 async function initDb() {
-    const client = await pool.connect();
     try {
         const sqlPath = path.join(__dirname, '../init.sql');
         const sql = fs.readFileSync(sqlPath, 'utf8');
 
-        console.log('Running init.sql...');
-        await client.query(sql);
+        console.log('Running init.sql using Prisma...');
+        // Split SQL by semicolon and filter out empty statements to execute safely
+        const statements = sql.split(';').filter(s => s.trim().length > 0);
+
+        for (const statement of statements) {
+            await prisma.$executeRawUnsafe(statement);
+        }
+
         console.log('Successfully initialized database schema!');
     } catch (err) {
         console.error('Error initializing database:', err);
     } finally {
-        client.release();
-        pool.end();
+        await prisma.$disconnect();
     }
 }
 

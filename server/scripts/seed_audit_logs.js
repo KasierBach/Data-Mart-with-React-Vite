@@ -1,10 +1,4 @@
-const { Pool } = require('pg');
-require('dotenv').config();
-
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
-});
+const prisma = require('../utils/prisma');
 
 const auditLogs = [
     { username: 'principal', action: 'LOGIN', details: 'User principal logged in successfully', ip: '192.168.1.1' },
@@ -20,32 +14,26 @@ const auditLogs = [
 ];
 
 async function seedAuditLogs() {
-    const client = await pool.connect();
     try {
-        console.log('Seeding audit logs...');
-
-        // Optional: clear old logs if needed, but append is usually safer for logs. 
-        // We will just insert new ones.
+        console.log('Seeding audit logs using Prisma...');
 
         for (const log of auditLogs) {
-            const username = log.username.replace(/'/g, "''");
-            const action = log.action.replace(/'/g, "''");
-            const details = log.details.replace(/'/g, "''");
-            const ip = log.ip.replace(/'/g, "''");
-
-            const query = `
-                INSERT INTO audit_logs (username, action, details, ip_address, created_at)
-                VALUES ('${username}', '${action}', '${details}', '${ip}', NOW() - (random() * interval '7 days'))
-            `;
-            await client.query(query);
+            await prisma.auditLog.create({
+                data: {
+                    username: log.username,
+                    action: log.action,
+                    details: log.details,
+                    ip_address: log.ip,
+                    created_at: new Date(Date.now() - Math.floor(Math.random() * 7 * 24 * 60 * 60 * 1000))
+                }
+            });
         }
 
         console.log(`Successfully seeded ${auditLogs.length} audit logs.`);
     } catch (err) {
         console.error('Error seeding audit logs:', err);
     } finally {
-        client.release();
-        pool.end();
+        await prisma.$disconnect();
     }
 }
 

@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Initialize database connection
-require('./config/db');
+// (Prisma handles this automatically on first request)
 
 // Routes
 app.use('/api', authRoutes);

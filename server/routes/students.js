@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../config/db');
+const prisma = require('../utils/prisma');
 
 // Get all students
 router.get('/', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM fact_scores_15dec ORDER BY id ASC');
-        res.json(result.rows);
+        const students = await prisma.factScore.findMany({
+            orderBy: {
+                id: 'asc'
+            }
+        });
+        res.json(students);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Database error' });
