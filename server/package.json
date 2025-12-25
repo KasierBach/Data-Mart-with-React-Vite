@@ -6,6 +6,8 @@
     "scripts": {
         "start": "node index.js",
         "dev": "nodemon index.js",
+        "build": "npx prisma generate",
+        "postinstall": "npm run build",
         "init-db": "node scripts/init-db.js",
         "import-data": "node scripts/import_data.js",
         "seed-audit-logs": "node scripts/seed_audit_logs.js",
